@@ -7,7 +7,7 @@
 <body>
 <div class="container">
   <?php require_once('header.php');?>
-  <h1 class="text-center m-5">CREATION DE COMPTE</h1>	
+  <h1 class="text-center m-5">CONNEXION</h1>	
   <div class="row">
     <?php require_once('menu.php');?>
     <main class="login-form">
@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header">Enregistrement</div>
+                <div class="card-header">Veillez vous connecter</div>
                   <div class="card-body">
                     <form action="" method="">
                       <div class="form-group row">
@@ -30,15 +30,9 @@
                           <input type="password" id="password" class="form-control" name="password" required>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label for="password" class="col-md-6 col-form-label text-md-right">Confirmation</label>
-                        <div class="col-md-6">
-                          <input type="password" id="passwordverify" class="form-control" name="password" required>
-                        </div>
-                      </div>                
                       <div class="col-md-6 offset-md-4">
                           <button type="submit" class="btn btn-primary">
-                              S'enregistrer
+                              Connexion
                           </button>                            
                         </div>
                     </div>
