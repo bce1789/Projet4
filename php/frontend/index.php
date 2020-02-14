@@ -2,6 +2,8 @@
 
 <!-- cd (espace)  puis $ cd Documents/Openclassroom/P4_coste_benoit -->
 <!-- cd C:/wamp64/www/P4_coste_benoit -->
+
+
 <html lang="fr">
     <head>
         <meta charset="utf-8">
@@ -14,26 +16,7 @@
 
     <body>
         <div class="container">
-            <header class="blog-header py-3 border-bottom">
-                <div class="row flex-nowrap justify-content-between align-items-center">
-                    <div class="col-4 pt-1">
-                        <a class="text-muted" href="#">Abonnement</a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <h1 class="blog-header-logo text-dark" href="#">Jean Forteroche</h1>
-                    </div>
-                    <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#" aria-label="Recherche">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path>
-                                <title>Recherche</title>
-                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                                <path d="M21 211-5.2-5.2"></path>
-                            </svg>  
-                        </a>
-                        <a class="btn btn-sm btn-outline-secondary" href="#">S'enregistrer</a>
-                    </div>   
-                </div>
-            </header>
+        <?php require_once('header.php');?>
             <div class="nav-scroller py-1 mn-2">
                 <nav class="nav d-flex justify-content-between">
                     <a class="p-2 text-muted" href="#">Un</a>
@@ -86,40 +69,7 @@
               </div>
               <!-- Fin des articles -->
               <div class="row">
-              <!--Aside-->
-              <aside class="col-md-4 blog-sidebar">
-                <div class="p-4 mb-3 bg-light rounded">
-                  <h4 class="font-italic">A propos</h4>
-                  <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                </div>
-          
-                <div class="p-4 bg-light">
-                  <h4 class="font-italic">Archives</h4>
-                  <ol class="list-unstyled mb-0">
-                    <li><a href="#">Date 00/00/00</a></li>
-                    <li><a href="#">Date 00/00/00</a></li>
-                    <li><a href="#">Date 00/00/00</a></li>
-                    <li><a href="#">Date 00/00/00</a></li>
-                    <li><a href="#">Date 00/00/00</a></li>
-                    <li><a href="#">Date 00/00/00</a></li>
-                    <li><a href="#">Date 00/00/00</a></li>
-                    <li><a href="#">Date 00/00/00</a></li>
-                  </ol>
-                </div>
-                <div class="mx-auto" style="width: 200px;">
-                  <!--Espace vide pour séparer les divs-->
-                  <p></p>
-                </div>
-                <div class="p-4 bg-light">
-                  <h4 class="font-italic">Rejoignez-moi</h4>
-                  <ol class="list-unstyled">
-                    <li><a href="#">GitHub</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Facebook</a></li>
-                  </ol>
-                </div>
-              </aside>
-              <!--Aside fin-->
+              <?php require_once('menu.php');?>
               <!--Blog main-->
               <div class="col-md-8 blog-main">
                 <h3 class="pb-4 mb-4 font-italic border-bottom">
@@ -194,16 +144,8 @@
               <!--Fin du blog-->
               </div>    
         </div>
-        <div class="mx-auto" style="width: 200px;">
-          <!--Espace vide pour séparer le footer-->
-          <p></p>
-        </div>
-        <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-          <div class="container text-center">
-            <small>Copyright &copy; Your Website</small>
-          </div>
-        </footer>
-        
+        <?php require_once('footer.php');?>
+
         <!-- script pour bootstrap -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
