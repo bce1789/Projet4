@@ -1,7 +1,7 @@
 <?php
 if(!empty($_POST) && !empty($_POST['email'])){
-    require_once 'db.php';
-    require_once 'functions.php';
+    require_once 'inc/db.php';
+    require_once 'inc/functions.php';
     $req = $pdo->prepare('SELECT * FROM users WHERE email = ? AND confirmed_at IS NOT NULL');
     $req->execute([$_POST['email']]);
     $user = $req->fetch();
@@ -18,7 +18,7 @@ if(!empty($_POST) && !empty($_POST['email'])){
     }
 }
 ?>
-<?php require 'header.php'; ?>
+<?php require 'inc/header.php'; ?>
 
     <h1>Mot de passe oublié</h1>
 
@@ -33,4 +33,4 @@ if(!empty($_POST) && !empty($_POST['email'])){
 
     </form>
 
-<?php require 'footer.php'; ?>
+<?php require 'inc/footer.php'; ?>

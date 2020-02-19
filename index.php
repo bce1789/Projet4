@@ -2,10 +2,11 @@
 <!-- cd (espace)  puis $ cd Documents/Openclassroom/P4_coste_benoit -->
 <!-- cd C:/wamp64/www/P4_coste_benoit -->
 <html lang="fr">
-<?php require_once('headScript.php');?>
+<?php require_once('inc/headScript.php');?>
     <body>
+    <?php require 'inc/header.php'; ?>
         <div class="container">
-        <?php require_once('header.php');?>
+        
             <div class="nav-scroller py-1 mn-2">
                 <nav class="nav d-flex justify-content-between">
                     <a class="p-2 text-muted" href="#">Un</a>
@@ -58,7 +59,7 @@
               </div>
               <!-- Fin des articles -->
               <div class="row">
-              <?php require_once('menu.php');?>
+              <?php require_once('inc/menu.php');?>
               <!--Blog main-->
               <div class="col-md-8 blog-main">
                 <h3 class="pb-4 mb-4 font-italic border-bottom">
@@ -128,13 +129,19 @@
                   <a class="btn btn-outline-primary" href="#">Older</a>
                   <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
                 </nav>
-          
+                
               </div>
               <!--Fin du blog-->
-              </div>    
+              
+              </div>  
+               
         </div>
-        <?php require_once('footer.php');?>
+        
+        
 
         
     </body>
+
+    <?php require 'inc/footer.php'; ?>
+    
 </html>
