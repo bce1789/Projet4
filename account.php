@@ -14,8 +14,13 @@ if(!empty($_POST)){
     }
 
 }
+
 require 'inc/header.php';
 ?>
+
+<head>
+<?php require_once('inc/headScript.php');?>
+</head>
 
     <h1>Bonjour <?= $_SESSION['auth']->username; ?></h1>
 

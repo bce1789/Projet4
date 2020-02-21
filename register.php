@@ -34,13 +34,11 @@ if(!empty($_POST)){
 
 if(empty($errors)){
 
-    $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?, confirmation_token = ?");
+    $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?");
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $token = str_random(60);
-    $req->execute([$_POST['username'], $password, $_POST['email'], $token]);
+    $req->execute([$_POST['username'], $password, $_POST['email']]);
     $user_id = $pdo->lastInsertId();
-    mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte merci de cliquer sur ce lien\n\nhttp://local.dev/Lab/Comptes/confirm.php?id=$user_id&token=$token");
-    $_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
+    $_SESSION['flash']['success'] = 'Votre compte à bien était crée';
     header('Location: login.php');
     exit();
 }
@@ -48,7 +46,9 @@ if(empty($errors)){
 
 }
 ?>
-
+<head>
+<?php require_once('inc/headScript.php');?>
+</head>
 <?php require 'inc/header.php'; ?>
 
 <h1>S'inscrire</h1>

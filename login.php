@@ -23,6 +23,9 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     }
 }
 ?>
+<head>
+<?php require_once('inc/headScript.php');?>
+</head>
 <?php require 'inc/header.php'; ?>
 
     <h1>Se connecter</h1>
@@ -35,7 +38,7 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
         </div>
 
         <div class="form-group">
-            <label for="">Mot de passe <a href="forget.php">(J'ai oublié mon mot de passe)</a></label>
+            <label for="">Mot de passe</label>
             <input type="password" name="password" class="form-control"/>
         </div>
 
