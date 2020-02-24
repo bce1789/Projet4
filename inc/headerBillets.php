@@ -18,13 +18,13 @@ if(session_status() == PHP_SESSION_NONE){
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <form name="redirect" action="index.php" method="post">
+    <form name="redirect" action="../index.php" method="post">
         <input class="navbar-brand" type="submit" value="Accueil">
     </form>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-    <div class="mx-auto" style="width: 50px;">
+  <div class="mx-auto" style="width: 50px;">
         <!--Espace vide -->
         <p></p>
     </div>
@@ -34,24 +34,11 @@ if(session_status() == PHP_SESSION_NONE){
     <div id="navbar" class="collapse navbar-collapse">
         <?php if (isset($_SESSION['auth'])): ?>
             <li class="nav-item">
-                <a class="nav-link" href="logout.php">Se déconnecter</a>
+                <a class="nav-link" href="../logout.php">Se déconnecter</a>
             </li>
-            <div class="mx-auto" style="width: 50px;">
-                    <!--Espace vide -->
-                    <p></p>
-            </div>
-            <li class="nav-item">
-                <form name="redirect" action="billets/index.php" method="post">
-                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Episodes">
-                </form>
-            </li>
-            <div class="mx-auto" style="width: 50px;">
-                    <!--Espace vide -->
-                    <p></p>
-            </div>
         <?php else: ?>  
             <li class="nav-item">
-                <form name="redirect" action="register.php" method="post">
+                <form name="redirect" action="../register.php" method="post">
                     <input class="btn btn-sm btn-outline-secondary" type="submit" value="S'inscrire">
                 </form>
                 <!--<a href="register.php">S'inscrire</a>-->
@@ -61,17 +48,8 @@ if(session_status() == PHP_SESSION_NONE){
                     <p></p>
                 </div>
             <li class="nav-item">
-                <form name="redirect" action="login.php" method="post">
+                <form name="redirect" action="../login.php" method="post">
                     <input class="btn btn-sm btn-outline-secondary" type="submit" value="Se connecter">
-                </form>
-            </li>
-            <div class="mx-auto" style="width: 50px;">
-                    <!--Espace vide -->
-                    <p></p>
-            </div>
-            <li class="nav-item">
-                <form name="redirect" action="billets/index.php" method="post">
-                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Episodes">
                 </form>
             </li>
             <div class="mx-auto" style="width: 50px;">
