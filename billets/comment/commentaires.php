@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <title>Mon blog</title>
-	<link href="style.css" rel="stylesheet" /> 
+        <?php require_once('../../inc/headScript.php');?> 
     </head>
         
     <body>
-        <h1>Mon super blog !</h1>
-        <p><a href="index.php">Retour à la liste des billets</a></p>
+        <?php require_once('../../inc/headerBillets.php'); ?>
+    <div class="mx-auto" style="width: 50px;">
+      <!--Espace vide -->
+      <p></p>
+    </div>
+    
+    <div class="row">
+    <?php require_once('../../inc/menu.php');?>
+      <div class="col-md-8 blog-main">
+        <h3 class="pb-4 mb-4 font-italic border-bottom">
+          Commentaires des publications
+        </h3>
+        <p><a href="../index.php">Retour à la liste des billets</a></p>
  
 <?php
 // Connexion à la base de données
 try
 {
-	$bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+	$bdd = new PDO('mysql:host=localhost;dbname=p_4;charset=utf8', 'root', '');
 }
 catch(Exception $e)
 {
@@ -22,7 +31,7 @@ catch(Exception $e)
 }
 
 // Récupération du billet
-$req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets WHERE id = ?');
+$req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM news WHERE id = ?');
 $req->execute(array($_GET['billet']));
 $donnees = $req->fetch();
 ?>
@@ -58,5 +67,11 @@ while ($donnees = $req->fetch())
 } // Fin de la boucle des commentaires
 $req->closeCursor();
 ?>
+ <?php if (isset ($_SESSION['auth'])) { ?>
+          <p><a href="../admin.php">Ecrire un commentaire</a></p>
+        <?php } else { ?>
+          <p><a href="../../login.php">Se connecter pour écrire</a></p>
+        <?php } ?>
+
 </body>
 </html>

@@ -1,9 +1,12 @@
 <?php
 require 'autoload.php';
 require 'NewsManager.php';
+require '../inc/functions.php';
 
 $db = DBFactory::getMysqlConnexionWithPDO();
 $manager = new NewsManagerPDO($db);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +15,7 @@ $manager = new NewsManagerPDO($db);
   </head>
   
   <body>
-    <?php require_once('../inc/header.php'); ?>
+    <?php require_once('../inc/headerBillets.php'); ?>
     <div class="mx-auto" style="width: 50px;">
       <!--Espace vide -->
       <p></p>
@@ -24,51 +27,42 @@ $manager = new NewsManagerPDO($db);
         <h3 class="pb-4 mb-4 font-italic border-bottom">
           Publications
         </h3>
-        <p><a href="admin.php">Accéder à l'espace d'administration</a></p>
-<?php
-
-
-  if (isset($_GET['id']))
-  {
-    $news = $manager->getUnique((int) $_GET['id']);
-    
-    echo '<p>Par <em>', $news->auteur(), '</em>, le ', $news->dateAjout()->format('d/m/Y à H\hi'), '</p>', "\n",
-        '<h2>', $news->titre(), '</h2>', "\n",
-        '<p>', nl2br($news->contenu()), '</p>', "\n";
-    
-    if ($news->dateAjout() != $news->dateModif())
-    {
-      echo '<p style="text-align: right;"><small><em>Modifiée le ', $news->dateModif()->format('d/m/Y à H\hi'), '</em></small></p>';
-    }
-  }
-
-  else
-  {
-    echo '<h2 style="text-align:center">Liste des 5 dernières publications</h2>';
-    
-    foreach ($manager->getList(0, 5) as $news)
-    {
-      if (strlen($news->contenu()) <= 200)
-      {
-        $contenu = $news->contenu();
-      }
-      
-      else
-      {
-        $debut = substr($news->contenu(), 0, 200);
-        $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+        <?php if (isset ($_SESSION['auth'])) { ?>
+          <p><a href="admin.php">Accéder à l'espace d'administration</a></p>
+        <?php } else { ?>
+          <p><a href="../login.php">Se connecter pour écrire</a></p>
+        <?php } ?>
         
-        $contenu = $debut;
-      }
-      
-      echo '<h4><a href="?id=', $news->id(), '">', $news->titre(), '</a></h4>', "\n",
-          '<p>', nl2br($contenu), '</p>';
-    }
-  }
-  ?>
+<!-- -->
+  <?php 
+
+      $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM news ORDER BY dateAjout DESC LIMIT 0, 5');
+
+      while ($donnees = $req->fetch())
+      {
+      ?>
+      <div class="news">
+          <h3>
+              <?php echo htmlspecialchars($donnees['titre']); ?>
+              <em>le <?php echo $donnees['date_creation_fr']; ?></em>
+          </h3>
+          
+          <p>
+          <?php
+          // On affiche le contenu du billet
+          echo nl2br(htmlspecialchars($donnees['contenu']));
+          ?>
+          <br />
+          <em><a href="comment/commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
+          </p>
       </div>
-    </div>
-  </body>
+      <?php
+      } // Fin de la boucle des billets
+      $req->closeCursor();
+      ?>
+        </div>
+      </div>
+    </body>
       
   <?php require_once '../inc/footer.php'; ?>
 </html>

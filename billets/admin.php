@@ -7,7 +7,7 @@ require 'NewsManager.php';
   </head>
   
   <body>
-    <?php require_once '../inc/header.php'; ?>
+    <?php require_once '../inc/headerBillets.php'; ?>
     
     <div class="row">
     <?php require_once('../inc/menu.php');?>

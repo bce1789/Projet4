@@ -12,7 +12,6 @@ if(!empty($_POST)){
         $pdo->prepare('UPDATE users SET password = ? WHERE id = ?')->execute([$password, $user_id]);
         $_SESSION['flash']['success'] = "Votre mot de passe a bien été mis à jour";
     }
-
 }
 
 require 'inc/header.php';
