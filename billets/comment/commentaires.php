@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,8 +20,8 @@
           Commentaires des publications
         </h3>
         <p><a href="../index.php">Retour à la liste des billets</a></p>
- 
-<?php
+
+        <?php
 // Connexion à la base de données
 try
 {
@@ -45,7 +47,9 @@ $donnees = $req->fetch();
     <p>
     <?php
     echo nl2br(htmlspecialchars($donnees['contenu']));
+    
     ?>
+    <a href="commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a>
     </p>
 </div>
 
@@ -60,18 +64,25 @@ $req->execute(array($_GET['billet']));
 
 while ($donnees = $req->fetch())
 {
-?>
-<p><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
-<p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-<?php
+  ?>
+  <p><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
+  <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+  <?php
 } // Fin de la boucle des commentaires
 $req->closeCursor();
 ?>
  <?php if (isset ($_SESSION['auth'])) { ?>
-          <p><a href="../admin.php">Ecrire un commentaire</a></p>
-        <?php } else { ?>
-          <p><a href="../../login.php">Se connecter pour écrire</a></p>
-        <?php } ?>
+  <p><a href="../admin.php">Ecrire un commentaire</a></p>
+<?php } else { ?>
+  <p><a href="../../login.php">Se connecter pour écrire</a></p>
+<?php } ?>
 
+<form method="post" action="commentaire_post.php?billet=<?php echo $donnees['id']; ?>">
+    <label for="auteur">Pseudo : </label><input type="text" name="auteur" id="auteur" placeholder="Entrez votre pseudo..." maxlength="20" /><br />
+    <label for="commentaire">Commentaire : </label><textarea name="commentaire" id="commentaire" placeholder="Entrez un commentaire"></textarea><br />
+    <input type="hidden" name="billet" value="<?php $_GET['billet']?>"/>
+    <input type="submit" value="Envoyer"/>
+</form>
+ 
 </body>
 </html>

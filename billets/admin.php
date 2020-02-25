@@ -8,6 +8,10 @@ require 'NewsManager.php';
   
   <body>
     <?php require_once '../inc/headerBillets.php'; ?>
+    <div class="mx-auto" style="width: 50px;">
+      <!--Espace vide -->
+      <p></p>
+    </div>
     
     <div class="row">
     <?php require_once('../inc/menu.php');?>
