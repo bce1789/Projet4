@@ -6,6 +6,9 @@ require '../inc/functions.php';
 $db = DBFactory::getMysqlConnexionWithPDO();
 $manager = new NewsManagerPDO($db);
 
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 
 ?>
 <!DOCTYPE html>
@@ -28,11 +31,29 @@ $manager = new NewsManagerPDO($db);
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         Publications
       </h3>
-      <?php if (isset($_SESSION['auth'])) { ?>
-        <p><a href="admin.php">Accéder à l'espace d'administration</a></p>
-      <?php } else { ?>
-        <p><a href="../login.php">Se connecter pour écrire</a></p>
-      <?php } ?>
+
+      <?php
+      $reqUser = $db->query('SELECT role_user FROM users');
+
+      var_dump($reqUser);
+      var_dump($_SESSION);
+
+      $_id = $db->query('SELECT id FROM users');
+      var_dump($_id);
+      ?>
+
+      <?php
+
+      while ($fUser = $reqUser->fetch()) {
+        var_dump($fUser);
+        if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user ){ ?>
+        <!-- acceder au propriété de l'objet -> -->
+          <p><a href="admin.php">Accéder à l'espace d'administration</a></p>
+        <?php } else { ?>
+          <p><a href="../login.php">Vous n'avez pas les droit pour écrire</a></p>
+      <?php }
+        $reqUser->closeCursor();
+      } ?>
 
       <!-- -->
       <?php
