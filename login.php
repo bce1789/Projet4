@@ -42,11 +42,7 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
             <input type="password" name="password" class="form-control"/>
         </div>
 
-        <div class="form-group">
-            <label>
-                <input type="checkbox" name="remember" value="1"/> Se souvenir de moi
-            </label>
-        </div>
+        
 
         <button type="submit" class="btn btn-primary">Se connecter</button>
 

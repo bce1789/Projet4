@@ -34,23 +34,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
       <?php
       $reqUser = $db->query('SELECT role_user FROM users');
-
-      var_dump($reqUser);
-      var_dump($_SESSION);
-
-      $_id = $db->query('SELECT id FROM users');
-      var_dump($_id);
       ?>
-
       <?php
-
       while ($fUser = $reqUser->fetch()) {
-        var_dump($fUser);
-        if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user ){ ?>
-        <!-- acceder au propriété de l'objet -> -->
+        if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
+          <!--   -> acceder au propriété de l'objet -> -->
           <p><a href="admin.php">Accéder à l'espace d'administration</a></p>
-        <?php } else { ?>
-          <p><a href="../login.php">Vous n'avez pas les droit pour écrire</a></p>
       <?php }
         $reqUser->closeCursor();
       } ?>
@@ -84,7 +73,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
   </div>
 </body>
-
+</div>
 <?php require_once '../inc/footer.php'; ?>
 
 </html>
