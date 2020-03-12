@@ -1,14 +1,3 @@
-<!-- <header>
-<script type="text/javascript">
-function delete_com(id)
-{
-    if (confirm("Supprimer le commentaire ?"))
-    {
-        document.location.href='commentaires.php?id=' + id;
-    }
-}
-</script></header> -->
-
 <?php require_once('../../inc/functions.php'); ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +7,7 @@ function delete_com(id)
 </head>
 
 <body>
-  <?php require_once('../../inc/headerBillets.php'); ?>
+  <?php include __DIR__ . "/../../inc/header.php"; ?>
   <div class="mx-auto" style="width: 50px;">
     <!--Espace vide -->
     <p></p>
@@ -30,7 +19,7 @@ function delete_com(id)
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         Commentaires des publications
       </h3>
-      <p><a href="../index.php">Retour à la liste des billets</a></p>
+      <p><a href="../billet.php">Retour à la liste des billets</a></p>
 
       <?php
       // Connexion à la base de données
@@ -80,51 +69,17 @@ function delete_com(id)
 
       // Récupération des commentaires
       $req = $bdd->prepare('SELECT id_users, id, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire');
-      $req->execute(array($_GET['billet']));
-      // $recupC = $req->fetch();
-
-      //Requéte afin de préparer une interface de supression des commentaires
-      // $deleteComment = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
-      // $deleteComment->execute(array($_GET['billet']));
-      // $dc = $deleteComment->fetch();
-      // var_dump($dc);
-      // while ($dc = $deleteComment->fetch()) {
-
-      // }
-
-      //
-      //
-      /* $reqUser = $bdd->prepare('SELECT username FROM users WHERE username = ?');
-      $reqUser->execute(array($_GET['billet']));
-      $dataName = $reqUser->fetch();
-      var_dump($dataName['username']);
-      while ($dataName = $reqUser->fetch()) {
-         ?><p><strong><?php echo htmlspecialchars($dataName['username']);
-      }
- */
-      
+      $req->execute(array($_GET['billet']));      
 
       while ($donnees = $req->fetch()) {
-        
-        // $userName = $bdd->query('SELECT username FROM users');
-        // var_dump($userName);
       ?>
         <p><strong><?php echo htmlspecialchars($donnees['id_users']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
-        <?php //echo $dataName
-         // Récuperer le nom de l'utilisateur qui a posté?> 
+        <?php ?> 
         <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-        <?php
-        // echo '<input type="button" value="Supprimer" onclick="delete_com('.$recupC['id'].')">';
-        //delete_signal();
-
-        // Redirection vers la page de suppression
-        ?>
         <?php if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
          
         <a href ="delete_comment.php?commentaire= <?php echo $donnees['id']; ?>">
-      
-          <button>Supprimer</button>
-          
+        <input type="submit" class="btn btn-danger" value="supprimer" />
         </a>
         <?php } else { ?>
           <form method="post">
