@@ -19,7 +19,8 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 
 <body>
-  <?php require_once('../inc/headerBillets.php'); ?>
+  <?php //require_once('../inc/headerBillets.php'); ?>
+  <?php include __DIR__ . "/../inc/header.php"; ?>
   <div class="mx-auto" style="width: 50px;">
     <!--Espace vide -->
     <p></p>

@@ -1,5 +1,3 @@
-<!-- recuperer l'id de l'utilisateur qui est connecté -->
-
 <?php
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -15,7 +13,7 @@ try {
 $deleteComment = $bdd->prepare('DELETE FROM commentaires WHERE id=?');
 $deleteComment->execute(array($_GET['commentaire']));
 // $deleteComment->execute(array($_SESSION['auth']->id, $_POST['commentaire'], $_GET['billet']));
-header('Location: commentaires.php?billet=' . $_GET['billet']);
+header('Location: /p4_coste_benoit/billets/billet.php');
 
 
 ?>

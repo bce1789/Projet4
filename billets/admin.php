@@ -7,7 +7,7 @@ require 'NewsManager.php';
   </head>
   
   <body>
-    <?php require_once '../inc/headerBillets.php'; ?>
+    <?php require_once '../inc/header.php'; ?>
     <div class="mx-auto" style="width: 50px;">
       <!--Espace vide -->
       <p></p>
@@ -85,7 +85,7 @@ if (isset($_POST['auteur']))
   </head>
   
   <body>
-    <p><a href=".">Accéder aux publications</a></p>
+    <p><a href="/p4_coste_benoit/billets/billet.php">Accéder aux publications</a></p>
     
     <form action="admin.php" method="post">
       <p style="text-align: center">
