@@ -33,70 +33,63 @@
       $req = $bdd->prepare('SELECT titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM news WHERE id = ?');
       $req->execute(array($_GET['billet']));
       $donnees = $req->fetch();
-
-
-      // Jointure interne
-      // $joint = $bdd->prepare('SELECT commentaires.id_users, users.username FROM username, commentaires WHERE users.id = commentaires.id');
-
-      // Récupération des username de la table users pour l'afficher lors du commentaire
-      //$reqUserName = $bdd->prepare('SELECT username, FROM users WHERE 1');
-      //$reqUserName->execute(array($_SESSION['auth']->username));
-      // $joint->execute(array($_GET['billet']));
-      // $nameUser = $joint->fetch();
-      //$userName = $reqUserName->fetch();
-      // var_dump($joint);
-      //var_dump($reqUserName);
-
       ?>
-
       <div class="news">
         <h3>
           <?php echo htmlspecialchars($donnees['titre']); ?>
           <em>le <?php echo $donnees['date_creation_fr']; ?></em>
         </h3>
-
         <p>
           <?php
           echo nl2br(htmlspecialchars($donnees['contenu']));
           ?>
         </p>
       </div>
-
       <h2>Commentaires</h2>
-
       <?php
       $req->closeCursor(); // Important : on libère le curseur pour la prochaine requête
 
       // Récupération des commentaires
       $req = $bdd->prepare('SELECT id_users, id, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire');
-      $req->execute(array($_GET['billet']));      
+      $req->execute(array($_GET['billet']));
 
-      while ($donnees = $req->fetch()) {
+      // Jointure de la table commentaires et users pour afficher le nom d'utilisateur qui poste.
+      $joint = $bdd->prepare('SELECT commentaires.id_users,users.id,users.username
+      FROM `commentaires`, `users`
+      WHERE commentaires.id_users = users.id');
+      $joint->execute(array($_GET['billet']));
+      $nameUser = $joint->fetch();
+
+      // transformer id_users de la table commentaires en username de la table users
+
+      while (($donnees = $req->fetch()) || ($nameUser = $joint->fetch())) {
+        if (!empty($donnees['commentaire'])) {
       ?>
-        <p><strong><?php echo htmlspecialchars($donnees['id_users']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
-        <?php ?> 
-        <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-        <?php if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
-         
-        <a href ="delete_comment.php?commentaire= <?php echo $donnees['id']; ?>">
-        <input type="submit" class="btn btn-danger" value="supprimer" />
-        </a>
-        <?php } else { ?>
-          <form method="post">
-          <input type="submit" class="btn btn-danger" value="signaler" />
-        </form>
-        <?php }
+          <p><strong><?php echo htmlspecialchars($nameUser['username']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
+          <?php ?>
+          <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+          <?php if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
+            <a href="delete_comment.php?commentaire= <?php echo $donnees['id']; ?>">
+              <input type="submit" class="btn btn-danger" value="supprimer" />
+            </a>
+      <?php }
+        }
       } // Fin de la boucle des commentaires
       $req->closeCursor();
+
       ?>
 
-
-
+      <div class="mx-auto" style="width: 50px;">
+        <!--Espace vide -->
+        <p></p>
+      </div>
       <?php if (isset($_SESSION['auth'])) { ?>
         <form method="post" action="commentaire_post.php?billet=<?php echo $_GET['billet']; ?>">
-          <label for="commentaire">Commentaire : </label><textarea name="commentaire" id="commentaire" placeholder="Entrez un commentaire"></textarea><br />
-          <?php $_GET['billet'] ?>
-          <input type="submit" value="Envoyer" />
+          <div class="form-group">
+            <label for="commentaire">Commentaire : </label><textarea name="commentaire" id="commentaire" class="form-control" placeholder="Entrez un commentaire"></textarea><br />
+            <?php $_GET['billet'] ?>
+            <input type="submit" class="btn btn-primary" value="Envoyer" />
+          </div>
         </form>
       <?php } else { ?>
         <p><a href="../../login.php">Se connecter pour écrire</a></p>
