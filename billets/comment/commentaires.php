@@ -62,7 +62,7 @@
 
       // transformer id_users de la table commentaires en username de la table users
 
-      while (($donnees = $req->fetch()) || ($nameUser = $joint->fetch())) {
+      while (($donnees = $req->fetch()) && ($nameUser = $joint->fetch())) {
         if (!empty($donnees['commentaire'])) {
       ?>
           <p><strong><?php echo htmlspecialchars($nameUser['username']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
@@ -72,12 +72,12 @@
             <a href="delete_comment.php?commentaire= <?php echo $donnees['id']; ?>">
               <input type="submit" class="btn btn-danger" value="supprimer" />
             </a>
-      <?php }
+          <?php } else { ?>
+            <input type="submit" class="btn btn-danger" value="signaler" /> <?php
+          }
         }
       } // Fin de la boucle des commentaires
-      $req->closeCursor();
-
-      ?>
+      $req->closeCursor();?>
 
       <div class="mx-auto" style="width: 50px;">
         <!--Espace vide -->
