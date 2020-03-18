@@ -50,34 +50,53 @@
       $req->closeCursor(); // Important : on libère le curseur pour la prochaine requête
 
       // Récupération des commentaires
-      $req = $bdd->prepare('SELECT id_users, id, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire');
+      $req = $bdd->prepare('SELECT id_users, id, commentaire, alerte, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire');
       $req->execute(array($_GET['billet']));
 
       // Jointure de la table commentaires et users pour afficher le nom d'utilisateur qui poste.
-      $joint = $bdd->prepare('SELECT commentaires.id_users,users.id,users.username
+      /*  $joint = $bdd->prepare('SELECT commentaires.id_users, commentaires.alerte, users.id,users.username
       FROM `commentaires`, `users`
       WHERE commentaires.id_users = users.id');
       $joint->execute(array($_GET['billet']));
-      $nameUser = $joint->fetch();
+      $nameUser = $joint->fetch(); */
 
       // transformer id_users de la table commentaires en username de la table users
 
-      while (($donnees = $req->fetch()) && ($nameUser = $joint->fetch())) {
+      while (($donnees = $req->fetch())) {
         if (!empty($donnees['commentaire'])) {
+
+          $userName = $bdd->prepare('SELECT username FROM users WHERE id=?');
+          $userName->execute(array($donnees['id_users']));
+          $userName = $userName->fetch();
+          /*  var_dump($userName['username']);
+          die; */
       ?>
-          <p><strong><?php echo htmlspecialchars($nameUser['username']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
+          <p><strong><?php echo htmlspecialchars($userName['username']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
           <?php ?>
           <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
           <?php if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
+
             <a href="delete_comment.php?commentaire= <?php echo $donnees['id']; ?>">
               <input type="submit" class="btn btn-danger" value="supprimer" />
             </a>
-          <?php } else { ?>
-            <input type="submit" class="btn btn-danger" value="signaler" /> <?php
+            <?php }
+          if ($donnees['alerte'] != 1) {
+            if (!$_SESSION['auth']->role_user) {
+
+            ?>
+
+
+              <a href="signal_comment.php?commentaire= <?php echo $donnees['id']; ?>">
+                <input type="submit" class="btn btn-danger" value="signaler" />
+              </a>
+            <?php }
+          } else { ?>
+            <input type="submit" class="btn btn-warning" value="Contenu signalé" />
+      <?php
           }
         }
       } // Fin de la boucle des commentaires
-      $req->closeCursor();?>
+      $req->closeCursor(); ?>
 
       <div class="mx-auto" style="width: 50px;">
         <!--Espace vide -->
