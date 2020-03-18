@@ -5,7 +5,7 @@
         <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
     </div>
 
-    <div class="p-4 bg-light">
+    <!-- <div class="p-4 bg-light">
         <h4 class="font-italic">Archives</h4>
         <ol class="list-unstyled mb-0">
         <li><a href="#">Date 00/00/00</a></li>
@@ -17,7 +17,7 @@
         <li><a href="#">Date 00/00/00</a></li>
         <li><a href="#">Date 00/00/00</a></li>
         </ol>
-    </div>
+    </div> -->
     <div class="mx-auto" style="width: 200px;">
         <!--Espace vide pour séparer les divs-->
         <p></p>
