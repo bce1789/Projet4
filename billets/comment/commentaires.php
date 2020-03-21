@@ -82,10 +82,7 @@
             <?php }
           if ($donnees['alerte'] != 1) {
             if (!$_SESSION['auth']->role_user) {
-
             ?>
-
-
               <a href="signal_comment.php?commentaire= <?php echo $donnees['id']; ?>">
                 <input type="submit" class="btn btn-danger" value="signaler" />
               </a>
