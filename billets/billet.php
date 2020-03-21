@@ -11,9 +11,9 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 ?>
-<!DOCTYPE html>
-<html>
 
+<html>
+<!DOCTYPE html>
 <head>
   <?php require_once('../inc/headScript.php'); ?>
 </head>
@@ -48,7 +48,7 @@ if (session_status() == PHP_SESSION_NONE) {
       <!-- -->
       <?php
 
-      $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM news ORDER BY dateAjout DESC LIMIT 0, 5');
+      $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr FROM news ORDER BY dateAjout DESC LIMIT 0, 5');
 
       while ($donnees = $req->fetch()) {
       ?>

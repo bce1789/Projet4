@@ -32,6 +32,7 @@ require 'NewsManager.php';
       forced_root_block: '',
       force_br_newlines: false,
       force_p_newlines: false,
+      entity_encoding : "raw" //accents problémes
 
       
     });
