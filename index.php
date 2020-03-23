@@ -14,7 +14,7 @@
     <!-- Présentation --> 
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative text-white rounded bg-dark">
         <div class="col p-4 d-flex flex-column position-static">
-          <h1 class="display-4 font-italic">Blog de Jean Forteroche</h1>
+          <h1 class="display-4 font-italic h1_title">Blog de Jean Forteroche</h1>
           <br>
           <p class="card-text mb-auto">Je suis ravis de vous faire vivre ma nouvelle aventure.<br>Vous allez découvrir pas à pas ma nouvelle création intitulé <em>Billet simple pour l'Alaska</em>.<br>J'éspére que vous apprécierais le voyage.</p>
           <!-- <a href="#" class="stretched-link">En savoir plus</a> -->
@@ -37,7 +37,7 @@
             <!-- <a href="#" class="stretched-link">En savoir plus</a> -->
           </div>
           <div class="col-auto d-none d-lg-block">
-            <img class="bd-placeholder-img" width="200" height="250" src="img/JR.jpg" alt="photo JF" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+            <img class="bd-placeholder-img" width="200" height="250" src="img/jeanfort.jpg" alt="photo JF" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
             <title>Placeholder</title>
             <!-- <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text> -->
             </img>

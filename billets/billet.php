@@ -15,12 +15,13 @@ if (session_status() == PHP_SESSION_NONE) {
 <html>
 <!DOCTYPE html>
 <head>
-  <?php require_once('../inc/headScript.php'); ?>
+<head>
+  <?php require ('../inc/headScript.php'); ?>
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
-  <?php //require_once('../inc/headerBillets.php'); ?>
-  <?php include __DIR__ . "/../inc/header.php"; ?>
+  <?php require_once "../inc/header.php"; ?>
   <div class="mx-auto" style="width: 50px;">
     <!--Espace vide -->
     <p></p>
