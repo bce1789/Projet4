@@ -21,26 +21,14 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 
 <body>
-    <!--  -->
-
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-        <form name="redirect" action="/p4_coste_benoit/index.php" method="post">
-
-            <input class="navbar-brand" type="submit" value="Accueil">
-        </form>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="mx-auto" style="width: 50px;">
-            <!--Espace vide -->
-            <p></p>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <div id="navbar" class="collapse navbar-collapse">
+    <!--Navbar responsive-->
+    <div id="navbar_responsive">
+        <nav class="navbar navbar-light bg-light lighten-4">
+            <a class="navbar-brand" href="/p4_coste_benoit/index.php">BLOG</a>
+            <!-- Collapse button -->
+            <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fas fa-bars fa-1x"></i></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                <ul class="navbar-nav mr-auto">
                     <?php if (isset($_SESSION['auth'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/p4_coste_benoit/logout.php">Se déconnecter</a>
@@ -88,15 +76,84 @@ if (session_status() == PHP_SESSION_NONE) {
                             <p></p>
                         </div>
                     <?php endif; ?>
-                </div>
-                <!--/.nav-collapse -->
-                <div class="mx-auto" style="width: 50px;">
-                    <!--Espace vide -->
-                    <p></p>
-                </div>
-            </ul>
-        </div>
-    </nav>
+                </ul>
+            </div>
+            <!-- Collapsible content -->
+        </nav>
+    </div>
+    <!--/.Navbar responsive-->
+    <!-- Navbar classic -->
+    <div id="navbar_classic">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <form name="redirect" action="/p4_coste_benoit/index.php" method="post">
+                <input class="navbar-brand" type="submit" value="Accueil">
+            </form>
+            <div class="mx-auto" style="width: 50px;">
+                <!--Espace vide -->
+                <p></p>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <?php if (isset($_SESSION['auth'])) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/p4_coste_benoit/logout.php">Se déconnecter</a>
+                            </li>
+                            <div class="mx-auto" style="width: 50px;">
+                                <!--Espace vide -->
+                                <p></p>
+                            </div>
+                            <li class="nav-item">
+                                <form name="redirect" action="/p4_coste_benoit/billets/billet.php" method="post">
+                                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Episodes">
+                                </form>
+                            </li>
+                            <div class="mx-auto" style="width: 50px;">
+                                <!--Espace vide -->
+                                <p></p>
+                            </div>
+                        <?php else : ?>
+                            <!--  -->
+                            <!--  -->
+                            <li class="nav-item">
+                                <form name="redirect" action="/p4_coste_benoit/register.php" method="post">
+                                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="S'inscrire">
+                                </form>
+                                <!--<a href="register.php">S'inscrire</a>-->
+                            </li>
+                            <div class="mx-auto" style="width: 50px;">
+                                <!--Espace vide -->
+                                <p></p>
+                            </div>
+                            <li class="nav-item">
+                                <form name="redirect" action="/p4_coste_benoit/login.php" method="post">
+                                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Se connecter">
+                                </form>
+                            </li>
+                            <div class="mx-auto" style="width: 50px;">
+                                <!--Espace vide -->
+                                <p></p>
+                            </div>
+                            <li class="nav-item">
+                                <form name="redirect" action="/p4_coste_benoit/billets/billet.php" method="post">
+                                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Episodes">
+                                </form>
+                            </li>
+                            <div class="mx-auto" style="width: 50px;">
+                                <!--Espace vide -->
+                                <p></p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <!--/.nav-collapse -->
+                    <div class="mx-auto" style="width: 50px;">
+                        <!--Espace vide -->
+                        <p></p>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
 
     <!-- -->
