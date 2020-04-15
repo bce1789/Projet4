@@ -1,10 +1,12 @@
 <?php
-require_once 'inc/functions.php';
+require_once (getcwd().'/inc/functions.php');
+// require_once 'inc/functions.php';
 session_start();
 if(!empty($_POST)){
 
     $errors = array();
-    require_once 'inc/db.php';
+    require_once (getcwd().'/inc/db.php');
+    // require_once 'inc/db.php';
 
     if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])){
         $errors['username'] = "Votre pseudo n'est pas valide (alphanumérique)";
@@ -49,7 +51,8 @@ if(empty($errors)){
 <head>
 <?php require_once('inc/headScript.php');?>
 </head>
-<?php require 'inc/header.php'; ?>
+<?php require_once (getcwd().'/inc/header.php'); ?>
+<?php /* require 'inc/header.php'; */ ?>
 
 <h1>S'inscrire</h1>
 
@@ -89,5 +92,5 @@ if(empty($errors)){
     <button type="submit" class="btn btn-primary">M'inscrire</button>
 
 </form>
-
-<?php require 'inc/footer.php'; ?>
+<?php require_once (getcwd().'/inc/footer.php'); ?>
+<?php /* require 'inc/footer.php'; */ ?>

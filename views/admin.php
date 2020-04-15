@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
-require 'autoload.php';
-require 'NewsManager.php';
+require 'models/autoload.php';
+require 'models/NewsManager.php';
 ?>
 
 <head>
-  <?php require_once('../inc/headScript.php'); ?>
+  <?php require_once('inc/headScript.php'); ?>
   <script src="https://cdn.tiny.cloud/1/03xqzeh8yuf3nsmi1hnw67hoathttg2i6bxihccdekv57viy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script type="text/javascript">
     tinymce.init({
@@ -40,14 +40,14 @@ require 'NewsManager.php';
 </head>
 
 <body>
-  <?php require_once '../inc/header.php'; ?>
+  <?php require_once 'inc/header.php'; ?>
   <div class="mx-auto" style="width: 50px;">
     <!--Espace vide -->
     <p></p>
   </div>
 
   <div class="row">
-    <?php require_once('../inc/menu.php'); ?>
+    <?php require_once('inc/menu.php'); ?>
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         Publications
@@ -113,7 +113,7 @@ require 'NewsManager.php';
       </head>
 
       <body>
-        <p><a href="/p4_coste_benoit/billets/billet.php">Accéder aux publications</a></p>
+        <p><a href="/p4_coste_benoit/index.php?action=billet">Accéder aux publications</a></p>
 
         <form action="admin.php" method="post">
           <p style="text-align: center">
