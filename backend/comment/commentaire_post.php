@@ -13,5 +13,5 @@ try {
 $req = $bdd->prepare('INSERT INTO commentaires (id_users, commentaire, id_billet, date_commentaire) VALUES(?, ?, ?, NOW())');
 $req->execute(array($_SESSION['auth']->id, $_POST['commentaire'], $_GET['billet']));
 
-header('Location: commentaires.php?billet=' . $_GET['billet']);
+header('Location: /p4_coste_benoit/index.php?action=comment?billet=' . $_GET['billet']);
 ?>

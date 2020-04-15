@@ -12,5 +12,5 @@ try {
 
 $signalComment = $bdd->prepare('UPDATE `commentaires` SET `alerte`= 1 WHERE id=?');
 $signalComment->execute(array($_GET['commentaire']));
-header('Location: /p4_coste_benoit/billets/billet.php');
+header('Location: /p4_coste_benoit/index.php?action=billet');
 ?>
