@@ -2,9 +2,6 @@
 include (getcwd().'/models/autoload.php');
 include (getcwd().'/models/NewsManager.php');
 include (getcwd().'/inc/functions.php');
-// require '../manager/autoload.php';
-// require 'NewsManager.php';
-// require '../inc/functions.php';
 
 $db = DBFactory::getMysqlConnexionWithPDO();
 $manager = new NewsManagerPDO($db);
@@ -12,31 +9,24 @@ $manager = new NewsManagerPDO($db);
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Blog de Jean Forteroche</title>
-    <meta name="description" content="Blog de Jean Forteroche">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/styles.css">
+<?php require_once('inc/headScript.php');?>
 </head>
 
 <body>
+  
   <?php /* require_once "../inc/header.php"; */ ?>
   <?php require_once (getcwd().'/inc/header.php'); ?>
+  <div class="container">
   <div class="mx-auto" style="width: 50px;">
     <!--Espace vide -->
     <p></p>
   </div>
 
   <div class="row">
-    <?php /* require_once('../inc/menu.php'); */ ?>
     <?php require_once (getcwd().'/inc/menu.php'); ?>
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
@@ -54,12 +44,9 @@ if (session_status() == PHP_SESSION_NONE) {
       <?php }
         $reqUser->closeCursor();
       } ?>
-
       <!-- -->
       <?php
-
       $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr FROM news ORDER BY dateAjout DESC LIMIT 0, 5');
-
       while ($donnees = $req->fetch()) {
       ?>
         <div class="news">
@@ -67,7 +54,6 @@ if (session_status() == PHP_SESSION_NONE) {
             <?php echo htmlspecialchars($donnees->titre); ?>
             <em>le <?php echo $donnees->date_creation_fr; ?></em>
           </h3>
-
           <p>
             <?php
             // On affiche le contenu du billet
@@ -84,9 +70,8 @@ if (session_status() == PHP_SESSION_NONE) {
       ?>
     </div>
   </div>
+  </div>
 </body>
 </div>
 <?php require_once (getcwd().'/inc/footer.php'); ?>
-<?php /* require_once '../inc/footer.php'; */ ?>
-
 </html>
