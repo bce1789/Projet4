@@ -1,7 +1,6 @@
 <?php 
 require_once (getcwd().'/controllers/homepageController.php');
 require_once (getcwd().'/controllers/securityController.php');
-//new
 require_once (getcwd().'/controllers/loginController.php');
 require_once (getcwd().'/controllers/logoutController.php');
 require_once (getcwd().'/controllers/billetController.php');
@@ -12,7 +11,6 @@ require_once (getcwd().'/controllers/adminController.php');
 //
 $homepageController = new homepageController;
 $securityController = new securityController;
-//new
 $loginController = new loginController;
 $logoutController = new logoutController;
 $billetController = new billetController;

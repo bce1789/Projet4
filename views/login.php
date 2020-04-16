@@ -1,6 +1,7 @@
 <?php
 require_once 'inc/functions.php';
 require_once 'models/DBFactory.php';
+
 //require_once 'models/db.php';
 reconnect_from_cookie();
 if (isset($_SESSION['auth'])) {
@@ -26,26 +27,28 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
 }
 ?>
 
-<head>
-    <?php require_once('inc/headScript.php'); ?>
-</head>
+
+<head><?php require_once('inc/headScript.php'); ?></head>
 
 <body>
     <?php require 'inc/header.php'; ?>
-
-    <h1>Se connecter</h1>
-
-    <form action="" method="POST">
-        <div class="form-group">
-            <label for="">Pseudo ou email</label>
-            <input type="text" name="username" class="form-control" />
+    <div class="container">
+        <div class="mx-auto" style="height: 50px;">
+            <!--Espace vide pour séparer les divs-->
+            <p></p>
         </div>
-        <div class="form-group">
-            <label for="">Mot de passe</label>
-            <input type="password" name="password" class="form-control" />
-        </div>
-        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <h1>Se connecter</h1>
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="">Pseudo ou email</label>
+                <input type="text" name="username" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="">Mot de passe</label>
+                <input type="password" name="password" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </form>
+    </div>
 
-    </form>
 </body>
-<?php require 'inc/footer.php'; ?>
