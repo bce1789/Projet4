@@ -2,6 +2,7 @@
 <?php
 require 'models/autoload.php';
 require 'models/NewsManager.php';
+require(getcwd() . '/models/DBFactory.php');
 ?>
 
 <head>
@@ -32,9 +33,9 @@ require 'models/NewsManager.php';
       forced_root_block: '',
       force_br_newlines: false,
       force_p_newlines: false,
-      entity_encoding : "raw" //accents problémes
+      entity_encoding: "raw" //accents problémes
 
-      
+
     });
   </script>
 </head>
@@ -53,7 +54,9 @@ require 'models/NewsManager.php';
         Publications
       </h3>
       <?php
-      $db = DBFactory::getMysqlConnexionWithPDO();
+      $newConnect = new DBFactory;
+      $db = $newConnect->getMysqlConnexionWithPDO();
+      //$db = DBFactory::getMysqlConnexionWithPDO();
       $manager = new NewsManagerPDO($db);
 
       if (isset($_GET['modifier'])) {
@@ -115,7 +118,7 @@ require 'models/NewsManager.php';
       <body>
         <p><a href="/p4_coste_benoit/index.php?action=billet">Accéder aux publications</a></p>
 
-        <form action="admin.php" method="post">
+        <form action="/p4_coste_benoit/index.php?action=admin" method="post">
           <p style="text-align: center">
             <?php
             if (isset($message)) {
@@ -161,7 +164,7 @@ require 'models/NewsManager.php';
           </thead>
           <?php
           foreach ($manager->getList() as $news) {
-            echo '<tr><td>', $news->auteur(), '</td><td>', $news->titre(), '</td><td>', $news->dateAjout()->format('d/m/Y à H\hi'), '</td><td>', ($news->dateAjout() == $news->dateModif() ? '-' : $news->dateModif()->format('d/m/Y à H\hi')), '</td><td><a href="?modifier=', $news->id(), '">Modifier</a> | <a href="?supprimer=', $news->id(), '">Supprimer</a></td></tr>', "\n";
+            echo '<tr><td>', $news->auteur(), '</td><td>', $news->titre(), '</td><td>', $news->dateAjout()->format('d/m/Y à H\hi'), '</td><td>', ($news->dateAjout() == $news->dateModif() ? '-' : $news->dateModif()->format('d/m/Y à H\hi')), '</td><td><a href="action=admin?modifier=', $news->id(), '">Modifier</a> | <a href="?supprimer=', $news->id(), '">Supprimer</a></td></tr>', "\n";
           }
           ?>
         </table>
