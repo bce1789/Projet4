@@ -20,7 +20,11 @@ require 'inc/header.php';
 <head>
 <?php require_once('inc/headScript.php');?>
 </head>
-
+<div class="container">
+<div class="mx-auto" style="height: 50px;">
+            <!--Espace vide pour séparer les divs-->
+            <p></p>
+        </div>
     <h1>Bonjour <?= $_SESSION['auth']->username; ?></h1>
 
     <form action="" method="post">
@@ -32,6 +36,4 @@ require 'inc/header.php';
         </div>
         <button class="btn btn-primary">Changer mon mot de passe</button>
     </form>
-
-
-<?php require 'inc/footer.php'; ?>
+</div>

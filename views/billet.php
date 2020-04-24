@@ -1,10 +1,15 @@
 <?php
 include (getcwd().'/models/autoload.php');
-include (getcwd().'/models/NewsManager.php');
+//include (getcwd().'/models/NewsManager.php');
 include (getcwd().'/inc/functions.php');
+require (getcwd().'/models/DBFactory.php');
 
-$db = DBFactory::getMysqlConnexionWithPDO();
-$manager = new NewsManagerPDO($db);
+
+$newConnect = new DBFactory;
+$db = $newConnect->getMysqlConnexionWithPDO();
+
+//$db = DBFactory::getMysqlConnexionWithPDO();
+//$manager = new NewsManagerPDO($db);
 
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
@@ -57,7 +62,7 @@ if (session_status() == PHP_SESSION_NONE) {
           <p>
             <?php
             // On affiche le contenu du billet
-            echo nl2br(htmlspecialchars($donnees->contenu));
+            echo nl2br(html_entity_decode($donnees->contenu));
             ?>
             <br />
             <em><a href="/p4_coste_benoit/index.php?action=comment&billet=<?php echo $donnees->id; ?>">Commentaires</a></em>

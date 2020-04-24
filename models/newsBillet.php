@@ -1,6 +1,6 @@
 <?php 
 require ('./DBFactory.php');
-class Billet {
+class newsBillet {
     private $id;
     private $auteur;
     private $titre;
@@ -26,6 +26,3 @@ class Billet {
     }
 }
 
-//faire appels a getbilletbyID dans billetControllers(controllers) etc...
-
-//Créer dans models un fichier par lien avec la base de données ex billet, commentaires, users...
