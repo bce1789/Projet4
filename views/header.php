@@ -83,16 +83,14 @@ if (session_status() == PHP_SESSION_NONE) {
                     <div id="navbar" class="collapse navbar-collapse">
                         <?php if (isset($_SESSION['auth'])) : ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/p4_coste_benoit/index.php?action=logout">Se déconnecter</a>
+                                <a class="nav-link" href="/logout">Se déconnecter</a>
                             </li>
                             <div class="mx-auto" style="width: 50px;">
                                 <!--Espace vide -->
                                 <p></p>
                             </div>
                             <li class="nav-item">
-                                <form name="redirect" action="/p4_coste_benoit/index.php?action=billet" method="post">
-                                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Episodes">
-                                </form>
+                                <a class="nav-link" href="/billet">Billet</a>
                             </li>
                             <div class="mx-auto" style="width: 50px;">
                                 <!--Espace vide -->
@@ -102,7 +100,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             <!--  -->
                             <!--  -->
                             <li class="nav-item">
-                                <form name="redirect" action="/p4_coste_benoit/index.php?action=signup" method="post">
+                                <form name="redirect" action="/signup" method="post">
                                     <input class="btn btn-sm btn-outline-secondary" type="submit" value="S'inscrire">
                                 </form>
                                 <!--<a href="register.php">S'inscrire</a>-->
@@ -112,7 +110,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <p></p>
                             </div>
                             <li class="nav-item">
-                                <form name="redirect" action="/p4_coste_benoit/index.php?action=login" method="post">
+                                <form name="redirect" action="/login" method="post">
                                     <input class="btn btn-sm btn-outline-secondary" type="submit" value="Se connecter">
                                 </form>
                             </li>
@@ -121,7 +119,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <p></p>
                             </div>
                             <li class="nav-item">
-                                <form name="redirect" action="/p4_coste_benoit/index.php?action=billet" method="post">
+                                <form name="redirect" action="/billet" method="post">
                                     <input class="btn btn-sm btn-outline-secondary" type="submit" value="Episodes">
                                 </form>
                             </li>

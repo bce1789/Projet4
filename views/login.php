@@ -1,37 +1,16 @@
 <?php
-require_once 'inc/functions.php';
+// require_once 'inc/functions.php';
 require_once 'models/DBFactory.php';
 
 //require_once 'models/db.php';
-reconnect_from_cookie();
-if (isset($_SESSION['auth'])) {
-    header('Location: account.php');
-    exit();
-}
-if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
-    $newConnect = new DBFactory;
-    $pdo = $newConnect->getMysqlConnexionWithPDO();
-    $req = $pdo->prepare('SELECT * FROM users WHERE (username = :username OR email = :username)');
-    $req->execute(['username' => $_POST['username']]);
-    $user = $req->fetch();
-    if ($user == null) {
-        $_SESSION['flash']['danger'] = 'Identifiant ou mot de passe incorrecte';
-    } elseif (password_verify($_POST['password'], $user->password)) {
-        $_SESSION['auth'] = $user;
-        $_SESSION['flash']['success'] = 'Vous êtes maintenant connecté';
-        header('Location: /p4_coste_benoit/index.php?action=account');
-        exit();
-    } else {
-        $_SESSION['flash']['danger'] = 'Identifiant ou mot de passe incorrecte';
-    }
-}
+
 ?>
 
 
-<head><?php require_once('inc/headScript.php'); ?></head>
+<head><?php require_once('views/headScript.php'); ?></head>
 
 <body>
-    <?php require 'inc/header.php'; ?>
+    <?php require 'views/header.php'; ?>
     <div class="container">
         <div class="mx-auto" style="height: 50px;">
             <!--Espace vide pour séparer les divs-->
