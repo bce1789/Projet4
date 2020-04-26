@@ -36,14 +36,16 @@ switch ($request) {
   case '/billet':
     $billetController->billet();
     break;
-    case '/logout':
-      $securityController->logout();
-      break;
+  case '/logout':
+    $securityController->logout();
+    break;
+  case '/signup':
+    $securityController->signup();
+    break;
+
     /*
   
-  case '/admin':
-    require __DIR__ . '/views/about.php';
-    break;
+  
   case '/commentaires':
     require __DIR__ . '/views/about.php';
     break; */
