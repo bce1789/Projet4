@@ -1,5 +1,5 @@
 <?php 
-include(getcwd() . '/models/DBFactory.php');
+require_once(getcwd() . '/models/DBFactory.php');
 class securityModel extends DBFactory {
     public function login($userName){
         $req = $this->db->prepare('SELECT * FROM users WHERE (username = :username OR email = :username)');

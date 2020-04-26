@@ -33,26 +33,34 @@ switch ($request) {
   case '/login':
     $securityController->login();
     break;
-  case '/signup':
-    require __DIR__ . '/views/about.php';
-    break;
   case '/billet':
+    $billetController->billet();
+    break;
+    /*case '/signup':
     require __DIR__ . '/views/about.php';
     break;
+  
   case '/admin':
     require __DIR__ . '/views/about.php';
     break;
   case '/commentaires':
     require __DIR__ . '/views/about.php';
-    break;
+    break; */
   case '/account':
     $accountController->account();
     break;
-  default:
+    /* default:
     http_response_code(404);
     require __DIR__ . '/views/404.php';
-    break;
-}/* 
+    break; */
+}
+////
+////
+///
+//
+
+
+/* 
 if (!isset($_GET['action'])) {
   $homepageController->homepage();
 } else {
