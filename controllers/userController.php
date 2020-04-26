@@ -1,7 +1,7 @@
 <?php
 require 'tools/functions.php';
 include(getcwd() . '/models/userModel.php');
-class accountController
+class userController
 {
     public function account()
     {

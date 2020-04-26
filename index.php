@@ -4,7 +4,7 @@ require_once(getcwd() . '/controllers/securityController.php');
 /* require_once (getcwd().'/controllers/loginController.php');
 require_once (getcwd().'/controllers/logoutController.php'); */
 require_once(getcwd() . '/controllers/billetController.php');
-require_once(getcwd() . '/controllers/accountController.php');
+require_once(getcwd() . '/controllers/userController.php');
 require_once(getcwd() . '/controllers/commentController.php');
 require_once(getcwd() . '/controllers/adminController.php');
 
@@ -14,7 +14,7 @@ $securityController = new securityController;
 /* $loginController = new loginController;
 $logoutController = new logoutController; */
 $billetController = new billetController;
-$accountController = new accountController;
+$accountController = new userController;
 $commentController = new commentController;
 $adminController = new adminController;
 //
@@ -36,9 +36,10 @@ switch ($request) {
   case '/billet':
     $billetController->billet();
     break;
-    /*case '/signup':
-    require __DIR__ . '/views/about.php';
-    break;
+    case '/logout':
+      $securityController->logout();
+      break;
+    /*
   
   case '/admin':
     require __DIR__ . '/views/about.php';

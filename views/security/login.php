@@ -1,12 +1,3 @@
-<?php
-// require_once 'inc/functions.php';
-require_once 'models/DBFactory.php';
-
-//require_once 'models/db.php';
-
-?>
-
-
 <head><?php require_once('views/headScript.php'); ?></head>
 
 <body>
