@@ -1,6 +1,11 @@
 <?php 
+include(getcwd() . '/models/billetModel.php');
 class billetController {
     public function billet(){
-       include (getcwd().'/views/billet.php');
+        $seeBillet = new billetModel;
+        $donnees = $seeBillet->donnees;
+        return $donnees;
+        include (getcwd().'/views/billet.php');
     }
+    
 }

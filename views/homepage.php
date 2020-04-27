@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><?php require_once('inc/headScript.php');?></head>
+<head><?php include(getcwd() . '/views\headScript.php');?></head>
 
 <body>
-  <?php require 'inc/header.php'; ?>
+  <?php require 'views/header.php'; ?>
   <div class="container">
     <div class="mx-auto" style="width: 200px;">
       <!--Espace vide pour séparer les divs-->
@@ -18,7 +18,7 @@
           <!-- <a href="#" class="stretched-link">En savoir plus</a> -->
         </div>
         <div class="col-auto d-none d-lg-block">
-          <img class="bd-placeholder-img" width="400" height="250" src="img/livre.jpg" alt="photo livre" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+          <img class="bd-placeholder-img" width="400" height="250" src="public\img/livre.jpg" alt="photo livre" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
           <title>Placeholder</title>
           </img>
         </div>
@@ -35,7 +35,7 @@
             <!-- <a href="#" class="stretched-link">En savoir plus</a> -->
           </div>
           <div class="col-auto d-none d-lg-block">
-            <img class="bd-placeholder-img" width="200" height="250" src="img/jeanfort.jpg" alt="photo JF" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+            <img class="bd-placeholder-img" width="200" height="250" src="public\img/jeanfort.jpg" alt="photo JF" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
             <title>Placeholder</title>
             <!-- <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text> -->
             </img>
@@ -54,7 +54,7 @@
             <!-- <a href="#" class="stretched-link">En savoir plus</a> -->
           </div>
           <div class="col-auto d-none d-lg-block">
-            <img class="bd-placeholder-img" width="200" height="250" src="img/journal.jpg" alt="photo JF" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+            <img class="bd-placeholder-img" width="200" height="250" src="public\img/journal.jpg" alt="photo JF" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
             <title>Placeholder</title>
             <!-- <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text> -->
             </img>
@@ -64,7 +64,7 @@
     </div>
     <!-- Fin des articles -->
     <div class="row">
-      <?php require_once('inc/menu.php'); ?>
+      <?php require_once('views/menu.php'); ?>
       <!--Blog main-->
       <div class="col-md-8 blog-main">
         <h3 class="pb-4 mb-4 font-italic border-bottom">
@@ -113,6 +113,6 @@
   </div>
   </div>
 </body>
-<?php require 'inc/footer.php'; ?>
+<?php require 'views/footer.php'; ?>
 
 </html>
