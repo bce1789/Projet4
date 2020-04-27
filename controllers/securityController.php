@@ -4,7 +4,6 @@ class securityController
 {
     public function login()
     {
-
         //reconnect_from_cookie();
         if (isset($_SESSION['auth'])) {
             header('Location: /account');
@@ -75,3 +74,4 @@ class securityController
 
 // trello
 // rajouter en IF confirmation MDP
+//remplacer dans les lien (ex header) submit -> /signup

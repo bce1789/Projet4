@@ -25,10 +25,10 @@ $request = $_SERVER['REQUEST_URI'];
 
 switch ($request) {
   case '/':
-    require __DIR__ . '/views/index.php';
+    require __DIR__ . '/views/homepage.php';
     break;
   case '':
-    require __DIR__ . '/views/index.php';
+    require __DIR__ . '/views/homepage.php';
     break;
   case '/login':
     $securityController->login();
@@ -42,17 +42,18 @@ switch ($request) {
   case '/signup':
     $securityController->signup();
     break;
-
-    /*
-  
-  
-  case '/commentaires':
-    require __DIR__ . '/views/about.php';
-    break; */
+    case '/home':
+      $homepageController->homepage();
+      break; 
+  case '/comment':
+    $commentController->comment();
+    break; 
   case '/account':
     $accountController->account();
     break;
-    /* default:
+    /* 
+    a faire: Admin
+    default:
     http_response_code(404);
     require __DIR__ . '/views/404.php';
     break; */

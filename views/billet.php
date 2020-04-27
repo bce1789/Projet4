@@ -5,15 +5,16 @@ include (getcwd().'/models/autoload.php');
 require_once (getcwd().'/models/billetModel.php');
 
 
-$newConnect = new DBFactory;
+
+//$newConnect = new DBFactory;
 //$db = $newConnect->getMysqlConnexionWithPDO();
 
 //$db = DBFactory::getMysqlConnexionWithPDO();
 //$manager = new NewsManagerPDO($db);
 
-if (session_status() == PHP_SESSION_NONE) {
+/* if (session_status() == PHP_SESSION_NONE) {
   session_start();
-}
+} */
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,18 +44,22 @@ if (session_status() == PHP_SESSION_NONE) {
       //$reqUser = $db->query('SELECT role_user FROM users');
       ?>
       <?php
-      while ($fUser = $reqUser->fetch()) {
+      
+      // while ($fUser = $role) {
+      while ($role ) {
+        // $reqUser = new billetModel;
         if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
           <!--   -> acceder au propriété de l'objet -> -->
-          <p><a href="/p4_coste_benoit/index.php?action=admin">Accéder à l'espace d'administration</a></p>
+          <p><a href="/admin">Accéder à l'espace d'administration</a></p>
       <?php }
-        $reqUser->closeCursor();
+        $role->closeCursor();
       } ?>
       <!-- -->
       <?php
       // transferé dans billetModel.php
       // $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr FROM news ORDER BY dateAjout DESC LIMIT 0, 5');
-      while ($donnees = $req->fetch()) {
+     /*  while ($donnees = $req->fetch()) { */
+      while ($donnees) {
       ?>
         <div class="news">
           <h3>
@@ -73,12 +78,12 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
       <?php
       } // Fin de la boucle des billets
-      $req->closeCursor();
+      //$donnees->closeCursor();
       ?>
     </div>
   </div>
   </div>
 </body>
 </div>
-<?php require_once (getcwd().'/inc/footer.php'); ?>
+<?php require_once (getcwd().'/views/footer.php'); ?>
 </html>
