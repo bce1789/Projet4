@@ -2,11 +2,11 @@
 <?php
 require 'models/autoload.php';
 require 'models/NewsManager.php';
-require(getcwd() . '/models/DBFactory.php');
+
 ?>
 
 <head>
-  <?php require_once('inc/headScript.php'); ?>
+  <?php require_once('views/headScript.php'); ?>
   <script src="https://cdn.tiny.cloud/1/03xqzeh8yuf3nsmi1hnw67hoathttg2i6bxihccdekv57viy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script type="text/javascript">
     tinymce.init({
@@ -41,55 +41,18 @@ require(getcwd() . '/models/DBFactory.php');
 </head>
 
 <body>
-  <?php require_once 'inc/header.php'; ?>
+  <?php require_once 'views/header.php'; ?>
   <div class="mx-auto" style="width: 50px;">
     <!--Espace vide -->
     <p></p>
   </div>
 
   <div class="row">
-    <?php require_once('inc/menu.php'); ?>
+    <?php require_once('views/menu.php'); ?>
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         Publications
       </h3>
-      <?php
-      $newConnect = new DBFactory;
-      $db = $newConnect->getMysqlConnexionWithPDO();
-      //$db = DBFactory::getMysqlConnexionWithPDO();
-      $manager = new NewsManagerPDO($db);
-
-      if (isset($_GET['modifier'])) {
-        $news = $manager->getUnique((int) $_GET['modifier']);
-      }
-
-      if (isset($_GET['supprimer'])) {
-        $manager->delete((int) $_GET['supprimer']);
-        $message = 'La news a bien été supprimée !';
-      }
-
-      if (isset($_POST['auteur'])) {
-        $news = new News(
-          [
-            'auteur' => $_POST['auteur'],
-            'titre' => $_POST['titre'],
-            'contenu' => $_POST['contenu']
-          ]
-        );
-
-        if (isset($_POST['id'])) {
-          $news->setId($_POST['id']);
-        }
-
-        if ($news->isValid()) {
-          $manager->save($news);
-
-          $message = $news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !';
-        } else {
-          $erreurs = $news->erreurs();
-        }
-      }
-      ?>
       <!DOCTYPE html>
       <html>
 
@@ -120,21 +83,16 @@ require(getcwd() . '/models/DBFactory.php');
 
         <form action="/p4_coste_benoit/index.php?action=admin" method="post">
           <p style="text-align: center">
-            <?php
-            if (isset($message)) {
-              echo $message, '<br />';
-            }
-            ?>
             <div class="form-group">
               <?php if (isset($erreurs) && in_array(News::AUTEUR_INVALIDE, $erreurs)) echo 'L\'auteur est invalide.<br />'; ?>
               Auteur : <input type="text" name="auteur" class="form-control" value="jean-forteroche" /><br />
             </div>
             <div class="form-group">
               <?php if (isset($erreurs) && in_array(News::TITRE_INVALIDE, $erreurs)) echo 'Le titre est invalide.<br />'; ?>
-              Titre : <input type="text" name="titre" class="form-control" value="<?php if (isset($news)) echo $news->titre(); ?>" /><br />
+              Titre : <input type="text" name="titre" class="form-control" value="<?php $donnees[0]->titre ?>" /><br />
             </div>
             <?php if (isset($erreurs) && in_array(News::CONTENU_INVALIDE, $erreurs)) echo 'Le contenu est invalide.<br />'; ?>
-            Contenu :<br /><textarea id="mytextarea" rows="8" cols="60" name="contenu"><?php if (isset($news)) echo $news->contenu(); ?></textarea><br />
+            Contenu :<br /><textarea id="mytextarea" rows="8" cols="60" name="contenu"><?php $donnees[0]->contenu ?></textarea><br />
             <?php
             if (isset($news) && !$news->isNew()) {
             ?>
@@ -149,8 +107,8 @@ require(getcwd() . '/models/DBFactory.php');
             ?>
           </p>
         </form>
-
-        <p style="text-align: center">Il y a actuellement <?= $manager->count() ?> publications. En voici la liste :</p>
+            <!-- ajouter manager count -->
+        <p style="text-align: center">Il y a actuellement publications. En voici la liste :</p>
 
         <table class="table">
           <thead class="thead-dark">
@@ -163,9 +121,9 @@ require(getcwd() . '/models/DBFactory.php');
             </tr>
           </thead>
           <?php
-          foreach ($manager->getList() as $news) {
+          /* foreach ($manager->getList() as $news) {
             echo '<tr><td>', $news->auteur(), '</td><td>', $news->titre(), '</td><td>', $news->dateAjout()->format('d/m/Y à H\hi'), '</td><td>', ($news->dateAjout() == $news->dateModif() ? '-' : $news->dateModif()->format('d/m/Y à H\hi')), '</td><td><a href="action=admin?modifier=', $news->id(), '">Modifier</a> | <a href="?supprimer=', $news->id(), '">Supprimer</a></td></tr>', "\n";
-          }
+          } */
           ?>
         </table>
       </body>
