@@ -46,33 +46,35 @@ require_once (getcwd().'/models/billetModel.php');
       <?php
       
       // while ($fUser = $role) {
-      while ($role ) {
+     
         // $reqUser = new billetModel;
         if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
           <!--   -> acceder au propriété de l'objet -> -->
           <p><a href="/admin">Accéder à l'espace d'administration</a></p>
       <?php }
-        $role->closeCursor();
-      } ?>
+        
+      ?>
       <!-- -->
       <?php
       // transferé dans billetModel.php
       // $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr FROM news ORDER BY dateAjout DESC LIMIT 0, 5');
      /*  while ($donnees = $req->fetch()) { */
-      while ($donnees) {
+      var_dump($donnees);
+      die;
+      while ($donnee = $donnees) {
       ?>
         <div class="news">
           <h3>
-            <?php echo htmlspecialchars($donnees->titre); ?>
-            <em>le <?php echo $donnees->date_creation_fr; ?></em>
+            <?php echo htmlspecialchars($donnee->titre); ?>
+            <em>le <?php echo $donnee->date_creation_fr; ?></em>
           </h3>
           <p>
             <?php
             // On affiche le contenu du billet
-            echo nl2br(html_entity_decode($donnees->contenu));
+            echo nl2br(html_entity_decode($donnee->contenu));
             ?>
             <br />
-            <em><a href="/p4_coste_benoit/index.php?action=comment&billet=<?php echo $donnees->id; ?>">Commentaires</a></em>
+            <em><a href="/p4_coste_benoit/index.php?action=comment&billet=<?php echo $donnee->id; ?>">Commentaires</a></em>
             <!-- <em><a href="comment/commentaires.php?billet=<?php //echo $donnees['id']; ?>">Commentaires</a></em> -->
           </p>
         </div>
