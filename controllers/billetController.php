@@ -5,7 +5,5 @@ class billetController {
         $seeBillet = new billetModel;
         $donnees = $seeBillet-> checkBillet();
         include (getcwd().'/views/billet.php');
-        
     }
-    
 }
