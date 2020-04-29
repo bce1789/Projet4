@@ -102,7 +102,7 @@
                                 <p></p>
                             </div>
                             <li class="nav-item">
-                            <a class="nav-link" href="/submit">episode</a>
+                            <a class="nav-link" href="/billet">Episode</a>
                             </li>
                             <div class="mx-auto" style="width: 50px;">
                                 <!--Espace vide -->
