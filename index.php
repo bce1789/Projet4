@@ -52,7 +52,6 @@ switch ($request) {
   case '/billet/delete':
     $billetController->deleteBillet();
     break;
-
     /* 
     a faire: Admin
     default:

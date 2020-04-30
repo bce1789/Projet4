@@ -24,11 +24,9 @@ require_once(getcwd() . '/models/billetModel.php');
         </h3>
         <?php
         if (isset($_SESSION['auth']->role_user)) { ?>
-          <!--   -> acceder au propriété de l'objet -> -->
-          <p><a href="/admin">Accéder à l'espace d'administration</a></p>
+          <p><a href="/billet/create">Création du nouveau billet</a></p>
         <?php }
         ?>
-        <!-- -->
         <?php
         foreach ($donnees as $donnee) {
         ?>

@@ -8,4 +8,4 @@
 
 //Créer dans models un fichier par lien avec la base de données ex billet, commentaires, users...
 
- Ipsum at expedita mollitia quia? Ullam est perspiciatis provident atque?
+ Ipsum at expedita mollitia quia? Ullam est perspiciatis provident atque?;

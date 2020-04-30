@@ -1,4 +1,5 @@
 <?php 
+//edit
 // créé form renvoi vers la function update billet.
 // dans la function update billet recupére les Post et les données modifier et envoyer au model
 //, sur le model créé une function SQL pour modifier un billet.
@@ -8,3 +9,4 @@
 // toutes les info a envoyer au model pour créé le billet. Rajouter message flash.
 //afficher les lien modifier/créé/delete juste pour les admin.
 // suppriemr admin.php quand j'ai fait les 4 views.
+

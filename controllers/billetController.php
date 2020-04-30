@@ -7,6 +7,9 @@ class billetController {
         include (getcwd().'/views/billet/listBillet.php');
     }
     public function createBillet(){
+      $news = intval($_SERVER['QUERY_STRING']);
+      $billet = new billetModel;
+      $donnees = $billet->addBillet($news);
         /* if (isset($_GET['modifier'])) {
             $news = $manager->getUnique((int) $_GET['modifier']);
           }
@@ -37,15 +40,17 @@ class billetController {
               $erreurs = $news->erreurs();
             }
           } */
-        include (getcwd().'/views/admin.php');
     }
     public function updateBillet(){
-        
         $id = intval($_SERVER['QUERY_STRING']);
         $billet = new billetModel;
         $donnees = $billet->findOneBillet($id);
         include(getcwd() . '/views/admin.php');
-        
-
     }
+    public function deleteBillet(){
+      $id = intval($_SERVER['QUERY_STRING']);
+      $billet = new billetModel;
+      $donnees = $billet->updateOneBillet($id);
+      include(getcwd() . '/views/billet/listBillet.php');
+  }
 }
