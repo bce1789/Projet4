@@ -52,38 +52,7 @@ include(getcwd() . '/models/NewsManager.php');
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         Publications
-      </h3><?php
-      if (isset($_GET['modifier'])) {
-            $news = $manager->getUnique((int) $_GET['modifier']);
-          }
-    
-          if (isset($_GET['supprimer'])) {
-            $manager->delete((int) $_GET['supprimer']);
-            $message = 'La news a bien été supprimée !';
-          }
-    
-          if (isset($_POST['auteur'])) {
-            $news = new News(
-              [
-                'auteur' => $_POST['auteur'],
-                'titre' => $_POST['titre'],
-                'contenu' => $_POST['contenu']
-              ]
-            );
-    
-            if (isset($_POST['id'])) {
-              $news->setId($_POST['id']);
-            }
-    
-            if ($news->isValid()) {
-              $manager->save($news);
-    
-              $message = $news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !';
-            } else {
-              $erreurs = $news->erreurs();
-            }
-          }?>
-      <!DOCTYPE html>
+      </h3>
       <html>
 
       <head>
@@ -111,7 +80,7 @@ include(getcwd() . '/models/NewsManager.php');
       <body>
         <p><a href="/billet">Accéder aux publications</a></p>
 
-        <form action="/create" method="post">
+        <form action="/billet/create" method="post">
           <p style="text-align: center">
             <div class="form-group">
               <?php if (isset($erreurs) && in_array(News::AUTEUR_INVALIDE, $erreurs)) echo 'L\'auteur est invalide.<br />'; ?>
@@ -119,10 +88,10 @@ include(getcwd() . '/models/NewsManager.php');
             </div>
             <div class="form-group">
               <?php if (isset($erreurs) && in_array(News::TITRE_INVALIDE, $erreurs)) echo 'Le titre est invalide.<br />'; ?>
-              Titre : <input type="text" name="titre" class="form-control" value="<?php $donnees[0]->titre ?>" /><br />
+              Titre : <input type="text" name="titre" class="form-control" /><br />
             </div>
             <?php if (isset($erreurs) && in_array(News::CONTENU_INVALIDE, $erreurs)) echo 'Le contenu est invalide.<br />'; ?>
-            Contenu :<br /><textarea id="mytextarea" rows="8" cols="60" name="contenu"><?php $donnees[0]->contenu ?></textarea><br />
+            Contenu :<br /><textarea id="mytextarea" rows="8" cols="60" name="contenu"></textarea><br />
             <?php
             if (isset($news) && !$news->isNew()) {
             ?>
