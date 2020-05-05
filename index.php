@@ -37,9 +37,11 @@ switch ($request) {
   case '/home':
     $homepageController->homepage();
     break;
+
   case '/comment':
-    $commentController->comment();
+    $commentController->findComment();
     break;
+    
   case '/account':
     $accountController->account();
     break;
@@ -51,6 +53,12 @@ switch ($request) {
     break;
   case '/billet/delete':
     $billetController->deleteBillet();
+    break;
+  case '/comment/create':
+    $commentController->createComment();
+    break;
+  case '/comment/delete':
+    $commentController->deleteComment();
     break;
     /* 
     a faire: Admin

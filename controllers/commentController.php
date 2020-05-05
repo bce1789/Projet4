@@ -1,12 +1,23 @@
-<?php 
+<?php
 include(getcwd() . '/models/commentModel.php');
-class commentController {
-    public function comment(){
-       include (getcwd().'/views/commentaires.php');
+class commentController
+{
+    public function findComment()
+    {
+        $id_billet = intval($_SERVER['QUERY_STRING']);
+        $seeComment = new commentModel;
+        $donnees = $seeComment->recupComment($id_billet);
     }
-    public function commentTitle(){
-        $trackData = new commentModel;
-        echo htmlspecialchars(utf8_decode($trackData['titre']));
-          echo $trackData['date_creation_fr'];
+    public function createComment()
+    {
+        include(getcwd() . '/views/commentaires.php');
+    }
+    public function deleteComment()
+    {
+        $id_billet = intval($_SERVER['QUERY_STRING']);
+        $comment = new commentModel;
+        $donnees = $comment->recupComment($id_billet);
+        header('Location: /billet');
+        exit;
     }
 }
