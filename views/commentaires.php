@@ -1,10 +1,15 @@
-<?php require_once(getcwd() . '/tools\functions.php'); ?>
-<?php require_once(getcwd() . '/controllers/commentController.php'); ?>
+<?php
+/* require_once(getcwd() . '/tools\functions.php');
+require_once(getcwd() . '/controllers/commentController.php');
+include(getcwd() . '/models/autoload.php'); */
+// require_once(getcwd() . '/models/billetModel.php');
+require_once(getcwd() . '/models/commentModel.php');
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-<?php require_once('views/headScript.php');?>
+  <?php require_once('views/headScript.php'); ?>
 </head>
 
 <body>
@@ -21,59 +26,25 @@
         Commentaires des publications
       </h3>
       <p><a href="/billet">Retour à la liste des billets</a></p>
-
-      <?php
-      // Connexion à la base de données
-      /* try {
-        $bdd = new PDO('mysql:host=localhost;dbname=p_4;charset=utf8', 'root', '');
-      } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-      } */
-
-      // Récupération du billet
-      /* 
-      TRANSFERED TO commentModel.php
-      function recupBillet
-      $req = $bdd->prepare('SELECT titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM news WHERE id = ?');
-      $req->execute(array($_GET['billet']));
-      $donnees = $req->fetch(); */
-      ?>
       <div class="news">
         <h3>
-          <?php $callController = new commentController;
-          $callController->commentTitle(); /*  TRANSFERT TO commentController.php echo htmlspecialchars(utf8_decode($donnees['titre'])); */ ?>
-          <em>le <?php /* echo $donnees['date_creation_fr']; */ ?></em>
         </h3>
         <p>
-          <?php
-          echo nl2br(htmlspecialchars(utf8_decode($donnees['contenu'])));
-          ?>
         </p>
       </div>
       <h2>Commentaires</h2>
-      <?php
-      $req->closeCursor(); //libère le curseur pour la prochaine requête
-
+      
+      <?php 
+      
       // Récupération des commentaires
-      /* 
-      TRANSFERT TO commentModel.php
-      $req = $bdd->prepare('SELECT id_users, id, commentaire, alerte, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire');
-      $req->execute(array($_GET['billet'])); */
-
-      while (($donnees = $req->fetch())) {
+      foreach ($donnees as $donnee) {
         if (!empty($donnees['commentaire'])) {
-          $appearsName = new commentModel;
-          /* 
-          TRANSFERT TO commentModel.php
-          $userName = $bdd->prepare('SELECT username FROM users WHERE id=?');
-          $userName->execute(array($donnees['id_users']));
-          $userName = $userName->fetch(); */
       ?>
           <p><strong><?php echo htmlspecialchars($userName['username']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
           <?php ?>
-          <p><?php echo nl2br(htmlspecialchars(utf8_decode($donnees['commentaire']))); ?></p>
+          <p><?php echo nl2br(htmlspecialchars(utf8_decode($donnee['commentaire']))); ?></p>
           <?php if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
-            <a href="/commentaire= <?php echo $donnees['id']; ?>">
+            <a href="/commentaire= <?php echo $donnee['id']; ?>">
               <input type="submit" class="btn btn-danger" value="supprimer" />
             </a>
             <?php }

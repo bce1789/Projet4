@@ -8,4 +8,11 @@
 
 //Créer dans models un fichier par lien avec la base de données ex billet, commentaires, users...
 
- Ipsum at expedita mollitia quia? Ullam est perspiciatis provident atque?;
+// from commentModel:
+/* public function recupBillet()
+    {
+        $req = $this->db->prepare('SELECT titre, contenu, DATE_FORMAT(dateAjout, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM news WHERE id = ?');
+        $req->execute(array($_GET['billet']));
+        $donnees = $req->fetch(PDO::FETCH_OBJ);
+        return $donnees;
+    } */
