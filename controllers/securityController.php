@@ -4,7 +4,6 @@ class securityController
 {
     public function login()
     {
-        //reconnect_from_cookie();
         if (isset($_SESSION['auth'])) {
             header('Location: /account');
             exit;
@@ -51,8 +50,6 @@ class securityController
                     header('location: /signup');
                     exit;
                 }
-           
-               // $login = new securityModel; vient de la
                 $user = $login->login($_POST['email']);
                 if ($user) {
                     $errors['email'] = 'Cet email est déjà utilisé pour un autre compte';

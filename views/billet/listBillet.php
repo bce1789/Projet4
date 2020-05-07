@@ -32,7 +32,9 @@ require_once(getcwd() . '/models/billetModel.php');
         ?>
           <div class="news">
             <h3>
-              <?php echo htmlspecialchars($donnee->titre); ?>
+              <?php 
+              
+              echo htmlspecialchars($donnee->titre); ?>
               <em>le <?php echo $donnee->date_creation_fr; ?></em>
             </h3>
             <p>

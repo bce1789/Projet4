@@ -15,6 +15,7 @@ class commentModel extends DBFactory
         $req->execute(['id_billet' => $id_billet]);
         $donnees = $req->fetch(PDO::FETCH_OBJ);
         return $donnees;
+
     }
     public function findOneComment($id)
     {
@@ -22,19 +23,19 @@ class commentModel extends DBFactory
         $req->execute(['id' => $id]);
         $donnees = $req->fetch(PDO::FETCH_OBJ);
         return $donnees;
-        var_dump($donnees);
-        exit;
     }
-    public function recupnameUser($userName)
+    public function recupnameUser($username)
     {
-        $userName = $this->db->prepare('SELECT username FROM users WHERE id = :id');
-        $userName->execute(array($userName['id_users']));
+        $userName = $this->db->prepare('SELECT username FROM users WHERE username = :username');
+        $userName->execute(['username' => $username]);
         $userName = $userName->fetch(PDO::FETCH_OBJ);
         return $userName;
+        
     }
-    public function signalComment($id, $alerte){
+    public function signalComment($id, $alerte)
+    {
         $requete = $this->db->prepare('UPDATE `commentaires` SET `alerte`= 1 WHERE id= :id');
-       // $requete->execute(array($_GET['commentaire']));
+        // $requete->execute(array($_GET['commentaire']));
         $requete->bindValue(':alerte', $alerte);
         $requete->bindValue(':id', $id);
         $requete->execute();
