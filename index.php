@@ -11,6 +11,9 @@ $billetController = new billetController;
 $accountController = new userController;
 $commentController = new commentController;
 //
+
+
+
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
@@ -37,22 +40,13 @@ switch ($request) {
   case '/home':
     $homepageController->homepage();
     break;
-
   case '/comment':
     $commentController->findComment();
+    //$commentController->findNameUser();
     break;
-    
+    //essayer un nouveau case avec /comment/quelquechose pour accéder aux autre fonctions de commentcontroller
   case '/account':
     $accountController->account();
-    break;
-  case '/billet/create':
-    $billetController->createBillet();
-    break;
-  case '/billet/update':
-    $billetController->updateBillet();
-    break;
-  case '/billet/delete':
-    $billetController->deleteBillet();
     break;
   case '/comment/create':
     $commentController->createComment();
@@ -60,6 +54,32 @@ switch ($request) {
   case '/comment/delete':
     $commentController->deleteComment();
     break;
+    /* case '/billet/create':
+    $billetController->createBillet();
+    break;
+  case '/billet/update':
+    $billetController->updateBillet();
+    break;
+  case '/billet/delete':
+    $billetController->deleteBillet();
+    break; */
+    default:
+    if ($_SESSION['auth']->role_user) {
+      switch ($request) {
+        case '/billet/create':
+          $billetController->createBillet();
+          break;
+        case '/billet/update':
+          $billetController->updateBillet();
+          break;
+        case '/billet/delete':
+          $billetController->deleteBillet();
+          break;
+      }
+    } else {
+      require __DIR__ . '/views/404.php';
+      break;
+    }
     /* 
     a faire: Admin
     default:
