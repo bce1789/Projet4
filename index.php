@@ -17,6 +17,10 @@ $commentController = new commentController;
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
+
+
+
+
 $request = strtok($_SERVER["REQUEST_URI"], '?');
 switch ($request) {
   case '/':
@@ -42,9 +46,7 @@ switch ($request) {
     break;
   case '/comment':
     $commentController->findComment();
-    //$commentController->findNameUser();
     break;
-    //essayer un nouveau case avec /comment/quelquechose pour accéder aux autre fonctions de commentcontroller
   case '/account':
     $accountController->account();
     break;
