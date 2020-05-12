@@ -52,7 +52,7 @@ switch ($request) {
     break;
   case '/comment/create':
     $commentController->createComment();
-    break;
+    break; // next to work
   case '/comment/delete':
     $commentController->deleteComment();
     break;

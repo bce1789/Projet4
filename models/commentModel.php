@@ -35,14 +35,10 @@ class commentModel extends DBFactory
         $requete->bindValue(':id', $id);
         $requete->execute();
     }
-    public function addComment($id_billet, $commentaire, $date_commentaire, $id_users, $alerte)
+    public function addComment($commentaire)
     {
         $requete = $this->db->prepare('INSERT INTO commentaires(id_billet, commentaire, date_commentaire, id_users, alerte) VALUES(:id_billet, :commentaire, :date_commentaire, :id_users, :alerte NOW(), NOW())');
-        $requete->bindValue(':id_billet', $id_billet);
         $requete->bindValue(':commentaire', $commentaire);
-        $requete->bindValue(':date_commentaire', $date_commentaire);
-        $requete->bindValue(':id_users', $id_users);
-        $requete->bindValue(':alerte', $alerte);
         $requete->execute();
     }
 }

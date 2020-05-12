@@ -12,7 +12,13 @@ class commentController
     }
     public function createComment()
     {
-        include(getcwd() . '/views/commentaires.php');
+        if (isset($_POST['commentaire'])) {
+            $comment = new commentModel;
+            $comment->addComment($_POST['commentaire']);
+            header('Location: /comment/create');
+            exit;
+          }
+          include(getcwd() . '/views/commentairesCreate.php');
     }
     public function deleteComment()
     {
