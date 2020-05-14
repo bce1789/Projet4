@@ -37,9 +37,12 @@ class commentModel extends DBFactory
     }
     public function addComment($commentaire)
     {
-        $requete = $this->db->prepare('INSERT INTO commentaires(id_billet, commentaire, date_commentaire, id_users, alerte) VALUES(:id_billet, :commentaire, :date_commentaire, :id_users, :alerte NOW(), NOW())');
+        $requete = $this->db->prepare('INSERT INTO commentaires(commentaire) VALUES(:commentaire NOW(), NOW())');
         $requete->bindValue(':commentaire', $commentaire);
         $requete->execute();
+        /* $requete->execute(['id_billet' => $id_billet]);
+        $donnees = $requete->fetch(PDO::FETCH_OBJ);
+        return $donnees; */
     }
 }
 
