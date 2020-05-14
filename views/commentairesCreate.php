@@ -1,3 +1,3 @@
 <?php
-var_dump($_POST['commentaire']);
+var_dump($comment->commentaire);
 die;

@@ -5,7 +5,9 @@ $title = 'commentaires'; ?>
 <?php ob_start(); ?>
 <div class="container">
     <h1>Page des commentaires</h1>
-    <?php foreach ($donnees as $donnee) { ?>
+    <?php
+    //while ($donnees = $req->fetch())
+    foreach ($donnees as $donnee) { ?>
         <p>Par: <?php echo htmlspecialchars($dataName->username); ?></p>
         <p>Commentaires: <?php echo htmlspecialchars($donnees->commentaire); ?></p>
     <?php
