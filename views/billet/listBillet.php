@@ -40,9 +40,9 @@ require_once(getcwd() . '/models/billetModel.php');
             <p>
               <?php
               // On affiche le contenu du billet
-              echo nl2br(html_entity_decode($donnee->contenu));
-              ?>
+              echo nl2br(html_entity_decode($donnee->contenu)); ?>
               <br />
+              <p>Par: <em><?php echo htmlspecialchars($donnee->auteur);?></em></p>
               <?php
               if (isset($_SESSION['auth']->role_user)) { 
               ?>

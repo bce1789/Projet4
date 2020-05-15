@@ -1,3 +1,3 @@
 <?php
-var_dump($comment->commentaire);
+var_dump($comment);
 die;
