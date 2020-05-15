@@ -1,5 +1,6 @@
 <?php
 include(getcwd() . '/models/commentModel.php');
+include_once(getcwd() . '/models/billetModel.php');
 class commentController
 {
     public function findComment()
@@ -7,11 +8,17 @@ class commentController
         $id_billet = intval($_SERVER['QUERY_STRING']);
         $seeComment = new commentModel;
         $donnees = $seeComment->recupComment($id_billet);
-        $dataName = $seeComment->recupnameUser(intval($donnees->id_users));      
+        
+        //
+        $id = intval($_SERVER['QUERY_STRING']);
+        $seeBillet = new billetModel;
+        $billet = $seeBillet->findOneBillet($id);
+        //  
         include(getcwd() . '/views/commentaires.php');
     }
     public function createComment()
     {
+        $id_billet = intval($_SERVER['QUERY_STRING']);
         if (isset($_POST['commentaire'])) {
             $comment = new commentModel;
             $comment->addComment($_POST['commentaire']);

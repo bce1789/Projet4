@@ -6,11 +6,9 @@ class commentModel extends DBFactory
     
     public function recupComment($id_billet)
     {
-        $req = $this->db->prepare('SELECT id_users, id, commentaire, alerte, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire');
+        $req = $this->db->prepare('SELECT id_users, username, commentaires.id, commentaire, alerte, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires inner JOIN users ON (commentaires.id_users=users.id) WHERE id_billet = :id_billet ORDER BY date_commentaire');
         $req->execute(['id_billet' => $id_billet]);
-        $donnees = $req->fetch(PDO::FETCH_OBJ);
-        return $donnees;
-
+        return $req;
     }
     public function findOneComment($id)
     {
@@ -25,7 +23,6 @@ class commentModel extends DBFactory
         $userName->execute(['id_users' => $id_users]);
         $userName = $userName->fetch(PDO::FETCH_OBJ);
         return $userName;
-        
     }
     public function signalComment($id, $alerte)
     {
@@ -35,9 +32,10 @@ class commentModel extends DBFactory
         $requete->bindValue(':id', $id);
         $requete->execute();
     }
-    public function addComment($commentaire)
+    public function addComment($commentaire, $id_billet)
     {
-        $requete = $this->db->prepare('INSERT INTO commentaires(commentaire) VALUES(:commentaire NOW(), NOW())');
+        $requete = $this->db->prepare('INSERT INTO commentaires(commentaire, id_billet) VALUES(:commentaire, :id_billet)');
+        $requete->bindValue(':id_billet', $id_billet);
         $requete->bindValue(':commentaire', $commentaire);
         $requete->execute();
         /* $requete->execute(['id_billet' => $id_billet]);
