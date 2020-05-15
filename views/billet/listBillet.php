@@ -1,6 +1,6 @@
 <?php
 include(getcwd() . '/models/autoload.php');
-require_once(getcwd() . '/models/billetModel.php');
+//require_once(getcwd() . '/models/billetModel.php');
 ?>
 <!DOCTYPE html>
 <html>

@@ -56,15 +56,6 @@ switch ($request) {
   case '/comment/delete':
     $commentController->deleteComment();
     break;
-    /* case '/billet/create':
-    $billetController->createBillet();
-    break;
-  case '/billet/update':
-    $billetController->updateBillet();
-    break;
-  case '/billet/delete':
-    $billetController->deleteBillet();
-    break; */
     default:
     if ($_SESSION['auth']->role_user) {
       switch ($request) {
