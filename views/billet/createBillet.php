@@ -1,19 +1,12 @@
-<!DOCTYPE html>
 <?php
-//include(getcwd() . '/models/autoload.php');
-/* include(getcwd() . '/models/News.php'); 
-include(getcwd() . '/models/NewsManager.php'); */
-
+$title = 'createBillet';
+ob_start();
 ?>
-
-<head>
-  <?php require_once('views/headScript.php'); ?>
   <script src="https://cdn.tiny.cloud/1/03xqzeh8yuf3nsmi1hnw67hoathttg2i6bxihccdekv57viy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script type="text/javascript">
     tinymce.init({
       selector: '#mytextarea',
       language: 'fr_FR',
-
       plugins: [
         'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
         'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
@@ -35,64 +28,46 @@ include(getcwd() . '/models/NewsManager.php'); */
       force_br_newlines: false,
       force_p_newlines: false,
       entity_encoding: "raw" //accents problémes
-
-
     });
   </script>
-</head>
+<div class="mx-auto" style="width: 50px;">
+  <!--Espace vide -->
+  <p></p>
+</div>
+<div class="col-md-8 blog-main">
+  <h3 class="pb-4 mb-4 font-italic border-bottom">
+    Publications
+  </h3>
+  <style type="text/css">
+    table,
+    td {
+      border: 1px solid black;
+    }
 
-<body>
-  <?php require_once 'views/header.php'; ?>
-  <div class="mx-auto" style="width: 50px;">
-    <!--Espace vide -->
-    <p></p>
-  </div>
+    table {
+      margin: auto;
+      text-align: center;
+      border-collapse: collapse;
+    }
 
-  <div class="row">
-    <?php require_once('views/menu.php'); ?>
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Publications
-      </h3>
-      <html>
-
-      <head>
-        <title>Administration</title>
-        <meta charset="utf-8" />
-
-        <style type="text/css">
-          table,
-          td {
-            border: 1px solid black;
-          }
-
-          table {
-            margin: auto;
-            text-align: center;
-            border-collapse: collapse;
-          }
-
-          td {
-            padding: 3px;
-          }
-        </style>
-      </head>
-
-      <body>
-        <p><a href="/billet">Accéder aux publications</a></p>
-        <form action="/billet/create" method="post">
-          <p style="text-align: center">
-            <div class="form-group">
-              <input type="text" name="auteur" class="form-control" value="Jean-forteroche" /><br />
-            </div>
-            <div class="form-group">
-              <input type="text" name="titre" class="form-control" required/><br/>
-            </div>
-            <div class="form-group">
-              <br /><textarea id="mytextarea" rows="8" cols="60" name="contenu"></textarea><br />
-            </div>
-            <input type="submit" value="Ajouter"/>
-        </form>
-      </body>
-
-      </html>
+    td {
+      padding: 3px;
+    }
+  </style>
+  <p><a href="/billet">Accéder aux publications</a></p>
+  <form action="/billet/create" method="post">
+    <p style="text-align: center">
+      <div class="form-group">
+        <input type="text" name="auteur" class="form-control" value="Jean-forteroche" /><br />
+      </div>
+      <div class="form-group">
+        <input type="text" name="titre" class="form-control" required /><br />
+      </div>
+      <div class="form-group">
+        <br /><textarea id="mytextarea" rows="8" cols="60" name="contenu"></textarea><br />
+      </div>
+      <input type="submit" value="Ajouter" />
+  </form>
+</div>
+<?php $content = ob_get_clean(); ?>
+<?php require('views/template.php'); ?>

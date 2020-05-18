@@ -1,11 +1,6 @@
 <?php
-
-require 'views/header.php';
-?>
-
-<head>
-<?php require_once('views/headScript.php');?>
-</head>
+$title = 'account';
+ob_start(); ?>
 <div class="container">
 <div class="mx-auto" style="height: 50px;">
             <!--Espace vide pour séparer les divs-->
@@ -23,3 +18,5 @@ require 'views/header.php';
         <button class="btn btn-primary">Changer mon mot de passe</button>
     </form>
 </div>
+<?php $content = ob_get_clean(); ?>
+<?php require('views/template.php'); ?>
