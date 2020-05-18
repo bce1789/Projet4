@@ -1,11 +1,18 @@
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+footer {
+    height:50px; 
+}
+.contenu{
+    height: 100%;
+    margin-bottom: -50px;
+}
 #navbar_responsive {
     display: none;
 }
-.footerBot{   
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    }
 @media only screen and (max-width: 500px) {
     /* Appareils avec une résolution de 500 pixels ou moins */
     #navbar_responsive {

@@ -1,7 +1,3 @@
-<head>
-    
-</head>
-<!--Aside-->
 <aside class="col-md-4 blog-sidebar menu_display">
     <div class="p-4 mb-3 bg-light rounded">
         <h4 class="font-italic">A propos</h4>
@@ -22,4 +18,3 @@
         </ol>
     </div>
 </aside>
-              <!--Aside fin-->

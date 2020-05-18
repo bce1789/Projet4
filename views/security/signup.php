@@ -1,15 +1,8 @@
-<head>
-    <?php require_once(getcwd() . '/views/headScript.php'); ?>
-</head>
-<?php require_once(getcwd() . '/views/header.php'); ?>
-<?php /* require 'inc/header.php'; */ ?>
+<?php
+$title = 'signup';
+ob_start(); ?>
 <div class="container">
-    <div class="mx-auto" style="height: 5px;">
-        <!--Espace vide pour séparer les divs-->
-        <p></p>
-    </div>
     <h1>S'inscrire</h1>
-
     <?php if (!empty($errors)) : ?>
         <div class="alert alert-danger">
             <p>Vous n'avez pas rempli le formulaire correctement</p>
@@ -46,3 +39,5 @@
         <button type="submit" class="btn btn-primary">M'inscrire</button>
     </form>
 </div>
+<?php $content = ob_get_clean(); ?>
+<?php require('views/template.php'); ?>

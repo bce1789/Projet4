@@ -1,23 +1,11 @@
 <?php
-include(getcwd() . '/models/autoload.php');
-//require_once(getcwd() . '/models/billetModel.php');
-?>
-<!DOCTYPE html>
-<html>
-
-<head>
-  <?php require_once('views/headScript.php'); ?>
-</head>
-
-<body>
-  <?php require_once(getcwd() . '/views/header.php'); ?>
+$title = 'billet';
+ob_start(); ?>
   <div class="container">
     <div class="mx-auto" style="width: 50px;">
       <!--Espace vide -->
       <p></p>
     </div>
-    <div class="row">
-      <?php require_once(getcwd() . '/views/menu.php'); ?>
       <div class="col-md-8 blog-main">
         <h3 class="pb-4 mb-4 font-italic border-bottom">
           Publications
@@ -56,10 +44,8 @@ include(getcwd() . '/models/autoload.php');
         }
         ?>
       </div>
-    </div>
   </div>
-</body>
 </div>
-<?php require_once(getcwd() . '/views/footer.php'); ?>
+<?php $content = ob_get_clean(); ?>
+<?php require('views/template.php'); ?>
 
-</html>
