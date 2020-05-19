@@ -22,7 +22,7 @@ ob_start();
         }
       },
       menubar: 'favs file edit view insert format tools table help',
-      content_css: 'css/content.css',
+      content_css: 'public/css/styles.css',
       // enlever balises 'p' et 'br'
       forced_root_block: '',
       force_br_newlines: false,

@@ -8,12 +8,10 @@ class commentController
         $id_billet = intval($_SERVER['QUERY_STRING']);
         $seeComment = new commentModel;
         $donnees = $seeComment->recupComment($id_billet);
-        
         //
         $id = intval($_SERVER['QUERY_STRING']);
         $seeBillet = new billetModel;
         $billet = $seeBillet->findOneBillet($id);
-        //  
         include(getcwd() . '/views/commentaires.php');
     }
     public function createComment()
@@ -21,7 +19,7 @@ class commentController
         $id_billet = intval($_SERVER['QUERY_STRING']);
         if (isset($_POST['commentaire'])) {
             $comment = new commentModel;
-            $comment->addComment($_POST['commentaire']);
+            $comment->addComment($_POST['commentaire'], $_GET['id_billet']);
             header('location: /comment/create');
           }
           include(getcwd() . '/views/commentairesCreate.php');

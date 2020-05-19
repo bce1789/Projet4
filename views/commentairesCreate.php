@@ -1,3 +1,3 @@
 <?php
-var_dump($comment);
+var_dump($id_billet);
 die;
