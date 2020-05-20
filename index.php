@@ -12,14 +12,9 @@ $accountController = new userController;
 $commentController = new commentController;
 //
 
-
-
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
-
-
-
 
 $request = strtok($_SERVER["REQUEST_URI"], '?');
 switch ($request) {
@@ -52,7 +47,7 @@ switch ($request) {
     break;
   case '/comment/create':
     $commentController->createComment();
-    break; // next to work
+    break;
   case '/comment/delete':
     $commentController->deleteComment();
     break;
