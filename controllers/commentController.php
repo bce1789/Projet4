@@ -19,10 +19,12 @@ class commentController
         $id_billet = intval($_SERVER['QUERY_STRING']);
         if (isset($_POST['commentaire'])) {
             $comment = new commentModel;
-            $comment->addComment($_POST['commentaire'], $_GET['id_billet']);
-            header('location: /comment/create');
-          }
-          include(getcwd() . '/views/commentairesCreate.php');
+            $comment->addComment($id_billet, $_POST['commentaire'], $_SESSION['auth']->id);
+            header('Location: /billet');
+        exit;
+        }
+        header('Location: /billet');
+        exit;
     }
     public function deleteComment()
     {
