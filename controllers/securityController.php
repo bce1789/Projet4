@@ -38,8 +38,7 @@ class securityController
         if (isset($_SESSION['auth'])) {
             header('Location: /account');
             exit;
-        }// mettre dans une fonction
-
+        }
         if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])) {
             $errors = array();
             
@@ -69,6 +68,4 @@ class securityController
     include(getcwd() . '/views/security/signup.php');
     }
 }
-
-
 // rajouter en IF confirmation MDP

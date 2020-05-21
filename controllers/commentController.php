@@ -28,9 +28,20 @@ class commentController
     }
     public function deleteComment()
     {
-        $id_billet = intval($_SERVER['QUERY_STRING']);
+        $id = intval($_SERVER['QUERY_STRING']);
         $comment = new commentModel;
-        $donnees = $comment->recupComment($id_billet);
+        $delete = $comment->deleteThisComment($id);
+        var_dump($delete);
+        die;
+        header('Location: /billet');
+        exit;
+    }
+    public function signalComment()
+    {
+        $id = intval($_SERVER['QUERY_STRING']);
+        $alerte = intval($_SERVER['QUERY_STRING']);
+        $comment = new commentModel;
+        $signal = $comment->signalThisComment($alerte, $id);
         header('Location: /billet');
         exit;
     }

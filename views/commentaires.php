@@ -11,14 +11,21 @@ ob_start(); ?>
     while ($donnee = $donnees->fetch()) { ?>
         <p>De <em><?php echo htmlspecialchars($donnee['username']); ?></em>: <?php echo htmlspecialchars($donnee['commentaire']); ?></p>
         <!-- test signalement -->
-        <?php if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
+        <?php
+        /*  var_dump($donnee['id']);
+        die;   */
+        if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
+            <a href="/comment/delete? <?php echo $donnee['id']; ?>">
                 <input type="submit" class="btn btn-danger" value="supprimer" />
+            </a>
             <?php }
         if ($donnee['alerte'] != 1) {
             if (isset($_SESSION['auth'])) {
                 if (!$_SESSION['auth']->role_user) {
             ?>
-                    <input type="submit" class="btn btn-danger" value="signaler" />
+                    <a href="/comment/signal? <?php echo $donnee['id']; ?>">
+                        <input type="submit" class="btn btn-danger" value="signaler" />
+                    </a>
             <?php }
             }
         } else { ?>

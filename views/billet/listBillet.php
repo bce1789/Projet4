@@ -36,8 +36,9 @@ ob_start(); ?>
               ?>
               <em><a href="/billet/delete?<?php echo $donnee->id; ?>">Supprimer</a></em>
               <em><a href="/billet/update?<?php echo $donnee->id; ?>">Modifier</a></em>
-              <?php } ?>
+              <?php } if (isset($_SESSION['auth'])) { ?>
               <em><a href="/comment?<?php echo $donnee->id; ?>">Commentaires</a></em>
+              <?php } ?>
             </p>
           </div>
         <?php
