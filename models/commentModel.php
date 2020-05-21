@@ -24,17 +24,24 @@ class commentModel extends DBFactory
         $userName = $userName->fetch(PDO::FETCH_OBJ);
         return $userName;
     }
-    public function signalComment($id, $alerte)
+    public function signalThisComment($alerte, $id)
     {
         $requete = $this->db->prepare('UPDATE `commentaires` SET `alerte`= 1 WHERE id= :id');
-        // $requete->execute(array($_GET['commentaire']));
+       // $requete->execute(array($_GET['commentaire']));
         $requete->bindValue(':alerte', $alerte);
         $requete->bindValue(':id', $id);
-        $requete->execute();
+        $requete->execute(); 
+        /* $signalComment = $this->db->prepare('UPDATE `commentaires` SET `alerte`= 1 WHERE id=?');
+        $signalComment->execute(array($_GET['id'])); */
     }
     public function addComment($id_billet)
     {
         $requete = $this->db->prepare('INSERT INTO commentaires (id_users, commentaire, id_billet, date_commentaire) VALUES(?, ?, ?, NOW())');
         $requete->execute(array($_SESSION['auth']->id, $_POST['commentaire'], $id_billet));
+    }
+    public function deleteThisComment()
+    {
+        $deleteComment = $this->db->prepare('DELETE FROM commentaires WHERE id=?');
+        $deleteComment->execute(array($_GET['id']));
     }
 }
