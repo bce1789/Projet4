@@ -21,7 +21,7 @@ class commentController
             $comment = new commentModel;
             $comment->addComment($id_billet, $_POST['commentaire'], $_SESSION['auth']->id);
             header('Location: /billet');
-        exit;
+            exit;
         }
         header('Location: /billet');
         exit;
@@ -31,18 +31,20 @@ class commentController
         $id = intval($_SERVER['QUERY_STRING']);
         $comment = new commentModel;
         $delete = $comment->deleteThisComment($id);
-        var_dump($delete);
-        die;
         header('Location: /billet');
         exit;
     }
     public function signalComment()
     {
-        $id = intval($_SERVER['QUERY_STRING']);
-        $alerte = intval($_SERVER['QUERY_STRING']);
-        $comment = new commentModel;
-        $signal = $comment->signalThisComment($alerte, $id);
-        header('Location: /billet');
-        exit;
+        if (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING']) && is_numeric($_SERVER['QUERY_STRING'])) {
+            $id = intval($_SERVER['QUERY_STRING']);
+            $comment = new commentModel;
+            $signal = $comment->signalThisComment($id);
+            header('Location: /billet');
+            exit;
+        } else {
+            $content = "merci de renseigner un numéro de commentaires valide";
+            include(getcwd() . '/views/erreur.php');
+        }
     }
 }

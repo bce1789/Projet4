@@ -15,7 +15,7 @@ ob_start(); ?>
         /*  var_dump($donnee['id']);
         die;   */
         if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
-            <a href="/comment/delete? <?php echo $donnee['id']; ?>">
+            <a href="/comment/delete?<?php echo $donnee['id']; ?>">
                 <input type="submit" class="btn btn-danger" value="supprimer" />
             </a>
             <?php }
@@ -23,7 +23,7 @@ ob_start(); ?>
             if (isset($_SESSION['auth'])) {
                 if (!$_SESSION['auth']->role_user) {
             ?>
-                    <a href="/comment/signal? <?php echo $donnee['id']; ?>">
+                    <a href="/comment/signal?<?php echo $donnee['id']; ?>">
                         <input type="submit" class="btn btn-danger" value="signaler" />
                     </a>
             <?php }
