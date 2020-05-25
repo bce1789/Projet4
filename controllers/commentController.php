@@ -28,11 +28,16 @@ class commentController
     }
     public function deleteComment()
     {
-        $id = intval($_SERVER['QUERY_STRING']);
-        $comment = new commentModel;
-        $delete = $comment->deleteThisComment($id);
-        header('Location: /billet');
-        exit;
+        if (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING']) && is_numeric($_SERVER['QUERY_STRING'])) {
+            $id = intval($_SERVER['QUERY_STRING']);
+            $comment = new commentModel;
+            $delete = $comment->deleteThisComment($id);
+            header('Location: /billet');
+            exit;
+        } else {
+            $content = "merci de renseigner un numéro de commentaires valide";
+            include(getcwd() . '/views/erreur.php');
+        }
     }
     public function signalComment()
     {
