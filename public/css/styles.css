@@ -1,19 +1,26 @@
-body{
+body {
     height: 100%;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
 }
+
 footer {
-    height:50px; 
+    position: absolute;
+    bottom: 0 px;
+    width: 100%;
+    padding-top: 50px;
 }
-.contenu{
+
+.contenu {
     height: 100%;
-    margin-bottom: -50px;
+    margin-bottom: 50px;
 }
+
 #navbar_responsive {
     display: none;
 }
+
 @media only screen and (max-width: 500px) {
     /* Appareils avec une résolution de 500 pixels ou moins */
     #navbar_responsive {
@@ -28,4 +35,4 @@ footer {
     .h1_title {
         font-size: 30px;
     }
-   }
+}

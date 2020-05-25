@@ -16,20 +16,22 @@ ob_start(); ?>
         die;   */
         if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
             <a href="/comment/delete?<?php echo $donnee['id']; ?>">
-                <input type="submit" class="btn btn-danger" value="supprimer" />
+                <input type="submit" class="btn-sm btn btn-danger" value="supprimer" />
             </a>
+            <p></p>
             <?php }
         if ($donnee['alerte'] != 1) {
             if (isset($_SESSION['auth'])) {
                 if (!$_SESSION['auth']->role_user) {
             ?>
                     <a href="/comment/signal?<?php echo $donnee['id']; ?>">
-                        <input type="submit" class="btn btn-danger" value="signaler" />
+                        <input type="submit" class="btn-sm btn btn-danger" value="signaler" />
                     </a>
             <?php }
             }
         } else { ?>
-            <input type="submit" class="btn btn-warning" value="Contenu signalé" />
+            <input type="submit" class="btn-sm btn btn-warning" value="Contenu signalé" />
+            <p></p>
         <?php
         }
         ?>
