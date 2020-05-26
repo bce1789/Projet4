@@ -18,16 +18,16 @@ footer {
 }
 
 #navbar_responsive {
-    display: none;
+    /* display: none; */
 }
 
 @media only screen and (max-width: 500px) {
     /* Appareils avec une résolution de 500 pixels ou moins */
     #navbar_responsive {
-        display: initial;
+        /* display: initial; */
     }
     #navbar_classic {
-        display: none;
+        /* display: none; */
     }
     .menu_display {
         display: none;

@@ -65,7 +65,7 @@ ob_start(); ?>
       </h3>
       <div class="blog-post">
         <h2 class="blog-post-title">Mon blog</h2>
-        <p>Vous pouvez suivre mes publications dans l'onglet <a href="/p4_coste_benoit/index.php?action=billet">Episodes</a>.</p>
+        <p>Vous pouvez suivre mes publications dans l'onglet <a href="/billet">Episodes</a>.</p>
         <ul>
           <li>Vous avez la possibilité de vous inscrire afin de participer.</li>
           <li>Je vous encourage à commenter les publications pour plus d'interactivités.</li>
