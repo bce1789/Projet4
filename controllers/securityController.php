@@ -46,24 +46,32 @@ class securityController
                 $user = $login->login($_POST['username']);
                 if ($user) {
                     $errors['username'] = 'Ce pseudo est déjà pris';
-                    header('location: /signup');
-                    exit;
+                    /* header('location: /signup');
+                    exit; */
                 }
                 $user = $login->login($_POST['email']);
                 if ($user) {
                     $errors['email'] = 'Cet email est déjà utilisé pour un autre compte';
-                    header('location: /signup');
-                    exit;
+                   /*  header('location: /signup');
+                    exit; */
                 }
 
             if (empty($errors)) {
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
                 $signup = new securityModel;
                 $signup->signup($password, $_POST['username'], $_POST['email']) ;
-                $_SESSION['flash']['success'] = 'Votre compte à bien était crée';
+                $_SESSION['flash']['success'] = 'Votre compte à bien été crée';
                 header('Location: /login');
                 exit;
+            } else {
+                $_SESSION['flash']['success'] = 'Votre création de compte contient des erreurs ou des éléments non renseigné';
+               
+                header('Location: /signup');
             }
+        } else {
+            $_SESSION['flash']['danger'] = 'Votre création de compte contient des erreurs ou des éléments non renseigné';
+            
+            //header('Location: /signup');
         }
     include(getcwd() . '/views/security/signup.php');
     }
