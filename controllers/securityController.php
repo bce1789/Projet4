@@ -39,41 +39,41 @@ class securityController
             header('Location: /account');
             exit;
         }
-        if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+        if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
             $errors = array();
-            
-                $login = new securityModel;
-                $user = $login->login($_POST['username']);
-                if ($user) {
-                    $errors['username'] = 'Ce pseudo est déjà pris';
-                    /* header('location: /signup');
-                    exit; */
-                }
-                $user = $login->login($_POST['email']);
-                if ($user) {
-                    $errors['email'] = 'Cet email est déjà utilisé pour un autre compte';
-                   /*  header('location: /signup');
-                    exit; */
-                }
+            $login = new securityModel;
+            $user = $login->login($_POST['username']);
+            if ($user) {
+                $errors['username'] = 'Ce pseudo est déjà pris';
+                $_SESSION['flash']['danger'] = 'Ce pseudo est déjà pris' ;
+                echo $errors;
+            }
+            $user = $login->login($_POST['email']);
+            if ($user) {
+                $errors['email'] = 'Cet email est déjà utilisé pour un autre compte';
+                $_SESSION['flash']['danger'] = 'Cet email est déjà utilisé' ;
+                echo $errors;
+            }
 
             if (empty($errors)) {
-                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $signup = new securityModel;
-                $signup->signup($password, $_POST['username'], $_POST['email']) ;
-                $_SESSION['flash']['success'] = 'Votre compte à bien été crée';
-                header('Location: /login');
-                exit;
+                if (($_POST['password']) === ($_POST['password_confirm'])) {
+                    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                    $signup = new securityModel;
+                    $signup->signup($password, $_POST['username'], $_POST['email']);
+                    $_SESSION['flash']['success'] = 'Votre compte à bien été crée';
+                    header('Location: /login');
+                    exit;
+                }
             } else {
                 $_SESSION['flash']['success'] = 'Votre création de compte contient des erreurs ou des éléments non renseigné';
-               
+
                 header('Location: /signup');
             }
         } else {
             $_SESSION['flash']['danger'] = 'Votre création de compte contient des erreurs ou des éléments non renseigné';
-            
+
             //header('Location: /signup');
         }
-    include(getcwd() . '/views/security/signup.php');
+        include(getcwd() . '/views/security/signup.php');
     }
 }
-// rajouter en IF confirmation MDP
