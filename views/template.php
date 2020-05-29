@@ -13,18 +13,18 @@
 </head>
 <body>
     <div class="contenu">
-        <?php require_once('views/header.php'); ?>
+        <?php include(getcwd() . '/views/header.php'); ?>
         <div class="mx-auto" style="height: 25px;">
             <!--Espace vide -->
             <p></p>
         </div>
         <div class="row">
-            <?php require_once('views/menu.php'); ?>
+            <?php include(getcwd() . '/views/menu.php'); ?>
             <div class="col-md-8 blog-main">
                 <?= $content ?>
             </div>
         </div>
-        <?php require_once('views/footer.php'); ?>
+        <?php include(getcwd() . '/views/footer.php'); ?>
     </div>
 </body>
 </html>

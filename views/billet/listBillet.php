@@ -38,7 +38,11 @@ ob_start(); ?>
               <em><a href="/billet/update?<?php echo $donnee->id; ?>">Modifier</a></em>
               <?php } if (isset($_SESSION['auth'])) { ?>
               <em><a href="/comment?<?php echo $donnee->id; ?>">Commentaires</a></em>
-              <?php } ?>
+              <?php } 
+              else {
+                $_SESSION['flash']['primary'] = 'Vous devez être connécté pour accéder aux commentaires';
+              }
+              ?>
             </p>
           </div>
         <?php

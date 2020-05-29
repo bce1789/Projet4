@@ -14,10 +14,11 @@ ob_start(); ?>
         </div>
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
-    <div class="mx-auto" style="height: 155px;">
+    <div class="mx-auto space_empty">
         <!--Espace vide -->
         <p></p>
     </div>
+
 </div>
 <?php $content = ob_get_clean(); ?>
 <?php require('views/template.php'); ?>

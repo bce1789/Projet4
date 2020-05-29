@@ -44,15 +44,17 @@ class securityController
             $login = new securityModel;
             $user = $login->login($_POST['username']);
             if ($user) {
-                $errors['username'] = 'Ce pseudo est déjà pris';
+                $errors['username'] = '';
                 $_SESSION['flash']['danger'] = 'Ce pseudo est déjà pris' ;
-                echo $errors;
             }
             $user = $login->login($_POST['email']);
             if ($user) {
-                $errors['email'] = 'Cet email est déjà utilisé pour un autre compte';
+                $errors['email'] = '';
                 $_SESSION['flash']['danger'] = 'Cet email est déjà utilisé' ;
-                echo $errors;
+            }
+            if (($_POST['password']) !== ($_POST['password_confirm'])) {
+                $errors['password'] = '';
+                $_SESSION['flash']['danger'] = 'Les mots de passe ne correspondent pas' ;
             }
 
             if (empty($errors)) {
@@ -64,15 +66,9 @@ class securityController
                     header('Location: /login');
                     exit;
                 }
-            } else {
-                $_SESSION['flash']['success'] = 'Votre création de compte contient des erreurs ou des éléments non renseigné';
-
-                header('Location: /signup');
             }
         } else {
-            $_SESSION['flash']['danger'] = 'Votre création de compte contient des erreurs ou des éléments non renseigné';
-
-            //header('Location: /signup');
+            $_SESSION['flash']['primary'] = 'Tous les éléments du formulaire sont requis';
         }
         include(getcwd() . '/views/security/signup.php');
     }

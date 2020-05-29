@@ -17,6 +17,10 @@ footer {
     margin-bottom: 50px;
 }
 
+.space_empty {
+    height: 155px;
+}
+
 @media only screen and (max-width: 500px) {
     /* Appareils avec une résolution de 500 pixels ou moins */
     .menu_display {
