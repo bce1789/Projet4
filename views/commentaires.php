@@ -8,36 +8,35 @@ ob_start(); ?>
     <p><br></p>
     <h3>Liste des commentaires</h3>
     <?php
-    while ($donnee = $donnees->fetch()) { ?>
-        <p>De <em><?php echo htmlspecialchars($donnee['username']); ?></em>: <?php echo htmlspecialchars($donnee['commentaire']); ?></p>
-        <!-- test signalement -->
-        <?php
-        /*  var_dump($donnee['id']);
-        die;   */
-        if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
-            <a href="/comment/delete?<?php echo $donnee['id']; ?>">
-                <input type="submit" class="btn-sm btn btn-danger" value="supprimer" />
-            </a>
-            <p></p>
-            <?php }
-        if ($donnee['alerte'] != 1) {
-            if (isset($_SESSION['auth'])) {
-                if (!$_SESSION['auth']->role_user) {
-            ?>
-                    <a href="/comment/signal?<?php echo $donnee['id']; ?>">
-                        <input type="submit" class="btn-sm btn btn-danger" value="signaler" />
-                    </a>
-            <?php }
-            }
-        } else { ?>
-            <input type="submit" class="btn-sm btn btn-warning" value="Contenu signalé" />
-            <p></p>
-        <?php
-        }
+    while ($donnee = $donnees->fetch()) {
         ?>
-    <?php
+        <p>De <em><?php echo htmlspecialchars($donnee['username']); ?></em>: <?php echo htmlspecialchars($donnee['commentaire']); ?>
+            <?php
+            if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>
+                <a href="/comment/delete?<?php echo $donnee['id']; ?>">
+                    <input type="submit" class="btn-sm btn btn-danger" value="supprimer" />
+                </a>
+
+                <?php }
+            if ($donnee['alerte'] != 1) {
+                if (isset($_SESSION['auth'])) {
+                    if (!$_SESSION['auth']->role_user) {
+                ?>
+                        <a href="/comment/signal?<?php echo $donnee['id']; ?>">
+                            <input type="submit" class="btn-sm btn btn-danger" value="Signaler" />
+                        </a>
+        </p>
+<?php }
+                }
+            } elseif ($_SESSION['auth']->role_user) { ?>
+<input type="submit" class="btn-sm btn btn-warning" value="Contenu signalé" />
+<p></p>
+<?php
+            }
+?>
+<?php
     }
-    ?>
+?>
 </div>
 <div class="container">
     <h3>Ajouter un commentaire</h3>
@@ -47,7 +46,6 @@ ob_start(); ?>
             <input type="text" class="form-control" id="commentaire" name="commentaire" placeholder="Quelques choses à ajouter?">
             <p></p>
             <button class="btn btn-primary" type="submit">Envoyer</button>
-
         </div>
     </form>
 </div>

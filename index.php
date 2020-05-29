@@ -45,11 +45,18 @@ switch ($request) {
   case '/account':
     $accountController->account();
     break;
-
   case '/comment/signal':
     $commentController->signalComment();
     break;
+    
   default:
+  if ($_SESSION['auth']) {
+    switch ($request) {
+      case '/comment/create':
+        $commentController->createComment();
+        break;
+    }
+  }
     if ($_SESSION['auth']->role_user) {
       switch ($request) {
         case '/billet/create':
@@ -61,9 +68,7 @@ switch ($request) {
         case '/billet/delete':
           $billetController->deleteBillet();
           break;
-        case '/comment/create':
-          $commentController->createComment();
-          break;
+
         case '/comment/delete':
           $commentController->deleteComment();
           break;
