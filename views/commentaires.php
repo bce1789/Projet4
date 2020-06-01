@@ -9,7 +9,7 @@ ob_start(); ?>
     <h3>Liste des commentaires</h3>
     <?php
     while ($donnee = $donnees->fetch()) {
-        ?>
+    ?>
         <p>De <em><?php echo htmlspecialchars($donnee['username']); ?></em>: <?php echo htmlspecialchars($donnee['commentaire']); ?>
             <?php
             if (isset($_SESSION['auth'])  && $_SESSION['auth']->role_user) { ?>

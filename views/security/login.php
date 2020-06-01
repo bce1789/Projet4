@@ -15,7 +15,6 @@ ob_start(); ?>
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
     <div class="mx-auto space_empty">
-        <!--Espace vide -->
         <p></p>
     </div>
 

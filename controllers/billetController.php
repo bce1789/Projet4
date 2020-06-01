@@ -27,9 +27,6 @@ class billetController
         $billet->updateOneBillet($id, $_POST['titre'], $_POST['auteur'], $_POST['contenu']);
         header('Location: /billet');
         exit;
-      } else {
-        $content = "merci de renseigner un numéro de billet valide";
-        include(getcwd() . '/views/erreur.php');
       }
     }
     $donnees = $billet->findOneBillet($id);

@@ -5,13 +5,6 @@ body {
     padding: 0;
 }
 
-footer {
-    position: absolute;
-    bottom: 0 px;
-    width: 100%;
-    padding-top: 50px;
-}
-
 .contenu {
     height: 100%;
     margin-bottom: 50px;

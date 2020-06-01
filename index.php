@@ -68,7 +68,6 @@ switch ($request) {
         case '/billet/delete':
           $billetController->deleteBillet();
           break;
-
         case '/comment/delete':
           $commentController->deleteComment();
           break;

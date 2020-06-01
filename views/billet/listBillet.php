@@ -2,8 +2,7 @@
 $title = 'billet';
 ob_start(); ?>
   <div class="container">
-    <div class="mx-auto" style="width: 50px;">
-      <!--Espace vide -->
+    <div class="mx-auto">
       <p></p>
     </div>
       <div class="col-md-8 blog-main">

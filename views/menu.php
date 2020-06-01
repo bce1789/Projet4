@@ -6,8 +6,7 @@
         <br>Il a également joué dans de nombreuses pieces de theatre comme: <em>"Entre autres"</em> ou bien <em>"Les Bœuf-carottes"</em>.
         </p>
     </div>
-    <div class="mx-auto" style="width: 200px;">
-        <!--Espace vide pour séparer les divs-->
+    <div class="mx-auto">
         <p></p>
     </div>
     <div class="p-4 bg-light">
