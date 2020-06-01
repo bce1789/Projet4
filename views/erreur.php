@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><?php 
+    <h3><?php 
     echo $content;
-    ?></h1>
+    ?></h3>
 </body>
 </html>

@@ -2,10 +2,6 @@
 $title = 'home';
 ob_start(); ?>
 <div class="container">
-  <div class="mx-auto" style="width: 200px;">
-    <!--Espace vide pour séparer les divs-->
-    <p></p>
-  </div>
   <!-- Présentation -->
   <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative text-white rounded bg-dark">
     <div class="col p-4 d-flex flex-column position-static">
@@ -65,7 +61,7 @@ ob_start(); ?>
       </h3>
       <div class="blog-post">
         <h2 class="blog-post-title">Mon blog</h2>
-        <p>Vous pouvez suivre mes publications dans l'onglet <a href="/billet">Episodes</a>.</p>
+        <p>Vous pouvez suivre mes publications<a href="/billet">Ici</a>.</p>
         <ul>
           <li>Vous avez la possibilité de vous inscrire afin de participer.</li>
           <li>Je vous encourage à commenter les publications pour plus d'interactivités.</li>
@@ -88,7 +84,7 @@ ob_start(); ?>
       </div><!-- /.blog-post -->
       <div class="blog-post">
         <h2 class="blog-post-title">Extrait de mon précedent chef d'oeuvre <em>"Le fou ou l'autre"</em></h2>
-        <p class="blog-post-meta">Decembre 21, 2019 par <a href="#">Jean</a></p>
+        <p class="blog-post-meta">Decembre 21, 2019</p>
 
         <p>"Les mots ! Les simples mots ! Combien ils sont terribles ! Combien limpides, éclatants ou cruels !
           <br> On voudrait leur échapper. Quelle subtile magie est donc en eux ?... On dirait qu'ils donnent une forme plastique aux choses informes, et qu'ils ont une musique propre à eux-mêmes aussi douce que celle du luth ou du violon !
