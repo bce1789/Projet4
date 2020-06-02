@@ -16,9 +16,5 @@ ob_start(); ?>
         <button class="btn btn-primary">Changer mon mot de passe</button>
     </form>
 </div>
-<div class="mx-auto space_empty">
-    <p></p>
-</div>
-
 <?php $content = ob_get_clean(); ?>
 <?php require('views/template.php'); ?>
