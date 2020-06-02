@@ -48,15 +48,15 @@ switch ($request) {
   case '/comment/signal':
     $commentController->signalComment();
     break;
-    
+
   default:
-  if ($_SESSION['auth']) {
-    switch ($request) {
-      case '/comment/create':
-        $commentController->createComment();
-        break;
+    if ($_SESSION['auth']) {
+      switch ($request) {
+        case '/comment/create':
+          $commentController->createComment();
+          break;
+      }
     }
-  }
     if ($_SESSION['auth']->role_user) {
       switch ($request) {
         case '/billet/create':
