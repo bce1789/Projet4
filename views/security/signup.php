@@ -28,5 +28,6 @@ ob_start(); ?>
         <button type="submit" class="btn btn-primary">M'inscrire</button>
     </form>
 </div>
+
 <?php $content = ob_get_clean(); ?>
 <?php require('views/template.php'); ?>

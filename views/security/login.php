@@ -15,5 +15,6 @@ ob_start(); ?>
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
 </div>
+<div class="space_empty"></div>
 <?php $content = ob_get_clean(); ?>
 <?php require('views/template.php'); ?>
